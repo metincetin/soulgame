@@ -37,6 +37,7 @@ func add_force(force):
 	pass
 
 func dash():
+
 	if (linear_velocity.length() < 0.01): 	return
 	var dir = linear_velocity.normalized()
 	

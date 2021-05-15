@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://packed_scenes/Character.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
+[ext_resource path="res://packed_scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://scripts/ui/HUD.gd" type="Script" id=4]
-[ext_resource path="res://packed_scenes/Enemy.gd" type="Script" id=5]
-[ext_resource path="res://scripts/Player.gd" type="Script" id=6]
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=5]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 100, 100 )
@@ -42,16 +41,7 @@ ProgressBar/styles/fg = SubResource( 7 )
 
 [node name="Scene" type="Spatial"]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28952, 0 )
-script = ExtResource( 6 )
-
-[node name="Input" type="Node" parent="Player"]
-script = ExtResource( 2 )
-
-[node name="Camera" type="Camera" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39036, 0 )
-current = true
+[node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
@@ -163,5 +153,3 @@ texture = ExtResource( 3 )
 
 [node name="HealthbarSocket" type="Spatial" parent="Character"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.80464, 0 )
-
-[editable path="Player"]
