@@ -8,7 +8,8 @@ class_name SkillData
 export var skill_name = ""
 export var description = ""
 export var icon:Texture
-export var skill_action: Resource 
+export var skill_action: Resource
+export var skill_effects = []
 
 enum SkillType {ACTIVE = 0, PASSIVE = 1} 
 
@@ -16,4 +17,7 @@ export(SkillType) var skill_type
 
 export var cast_rate:float = 1.0
 
-func cast(caster):	skill_action.cast(caster)
+func cast(caster):
+	skill_action.cast(caster)
+	for eff in skill_effects:
+		eff.apply(caster)

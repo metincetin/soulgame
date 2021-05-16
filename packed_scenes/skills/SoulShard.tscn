@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://packed_scenes/particles/Explosion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Projectile.gd" type="Script" id=2]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.5
+
+[sub_resource type="SphereMesh" id=2]
+
+[node name="Fireball" type="RigidBody"]
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 2 )
+velocity = 50.0
+create_on_destroy = ExtResource( 1 )
+damage_percentage = 2.0
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 1, 2 )
+
+[node name="SlashParticle" type="Spatial"]
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource( 2 )
+flag_align_y = true
+direction = Vector3( 0, 1, 0 )
+spread = 90.0
+initial_velocity = 15.0
+scale_amount = 0.2
+color = Color( 0.996078, 0.0705882, 0.0705882, 1 )
+
+[connection signal="ready" from="CPUParticles" to="CPUParticles" method="set_emitting" binds= [ true ]]

@@ -8,6 +8,7 @@ extends Character
 var skill_container
 var selected_skill
 
+var raycast:RayCast
 export var magic_spawn_point_path:NodePath
 var magic_spawn_point:Position3D
 
@@ -16,6 +17,8 @@ signal selected_skill_changed
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	._ready()
+	raycast = get_node("Camera/RayCast")
+	raycast.add_exception(self)
 	magic_spawn_point = get_node(magic_spawn_point_path)
 	skill_container = get_node("Skills")
 	get_tree().root.get_node("Scene/MainUI/UI/QSkillSlot").skill = skill_container.get_skill("Q")
@@ -41,6 +44,10 @@ func _unhandled_input(event):
 				select_skill(skill_container.get_skill("1"))
 			KEY_2:
 				select_skill(skill_container.get_skill("2"))
+			KEY_3:
+				select_skill(skill_container.get_skill("3"))
+			KEY_4:
+				select_skill(skill_container.get_skill("4"))
 		# q (soul capture) and space (dash) skills are auto-casted
 		if event.scancode == KEY_Q:
 			try_cast(skill_container.get_skill("Q"))
@@ -63,17 +70,30 @@ func try_cast(skill):
 	
 func try_deal_primary_damage():
 	var bodies = $Area.get_overlapping_bodies()
-	for body in bodies:
-		if body == self:	continue
-		if body.has_method("damage"):
-			print("damaging: " + str(body))
-			body.damage(get_total_damage())
-			return
-			
-	var raycast = get_node("Camera/RayCast")
+	
 	if raycast.is_colliding():
-		var point = get_node("Camera/RayCast").get_collision_point()
-		$EffectHandler.create_wall_slash_particle(point)
+		var col = raycast.get_collider()
+		if col.has_method("damage"):
+			col.damage(get_total_damage())
+			$EffectHandler.create_blood_particle(raycast.get_collision_point())
+		else:
+			$EffectHandler.create_wall_slash_particle(raycast.get_collision_point())
+	
+#	for body in bodies:
+#		if body == self:	continue
+#		if body.has_method("damage"):
+#			print("damaging: " + str(body))
+#			body.damage(get_total_damage())
+#
+#			if raycast.is_colliding():
+#				var point = raycast.get_collision_point()
+#				$EffectHandler.create_blood_particle(point)
+#			return
+#
+#
+#	if raycast.is_colliding():
+#		var point = raycast.get_collision_point()
+#		$EffectHandler.create_wall_slash_particle(point)
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

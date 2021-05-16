@@ -17,9 +17,10 @@ projectile = ExtResource( 2 )
 
 [resource]
 script = ExtResource( 1 )
-skill_name = ""
-description = ""
+skill_name = "Dark Cast"
+description = "Cast a simple dark projectile, dealing huge damage to the target"
 icon = SubResource( 2 )
 skill_action = SubResource( 3 )
+skill_effects = [  ]
 skill_type = 0
-cast_rate = 1.0
+cast_rate = 0.6

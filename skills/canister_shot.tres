@@ -15,5 +15,6 @@ script = ExtResource( 1 )
 skill_name = "Canister shot"
 description = ""
 skill_action = SubResource( 1 )
+skill_effects = [  ]
 skill_type = 0
 cast_rate = 2.0

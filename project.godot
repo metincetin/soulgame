@@ -24,15 +24,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ui/HUD.gd"
 }, {
+"base": "SkillEffect",
+"class": "MaterialChangeEffect",
+"language": "GDScript",
+"path": "res://scripts/skill_effects/MaterialChangeEffect.gd"
+}, {
 "base": "Resource",
 "class": "MultiProjectileCaster",
 "language": "GDScript",
 "path": "res://scripts/skill_actions/MultiProjectileCaster.gd"
 }, {
+"base": "SkillAction",
+"class": "ObjectCreator",
+"language": "GDScript",
+"path": "res://scripts/skill_actions/ObjectCreator.gd"
+}, {
 "base": "Resource",
 "class": "ProjectileCaster",
 "language": "GDScript",
 "path": "res://scripts/skill_actions/ProjectileCaster.gd"
+}, {
+"base": "SkillEffect",
+"class": "ShaderPassEffect",
+"language": "GDScript",
+"path": "res://scripts/skill_effects/ShaderPassEffect.gd"
 }, {
 "base": "Resource",
 "class": "SkillAction",
@@ -45,19 +60,34 @@ _global_script_classes=[ {
 "path": "res://scripts/SkillData.gd"
 }, {
 "base": "Resource",
+"class": "SkillEffect",
+"language": "GDScript",
+"path": "res://scripts/SkillEffect.gd"
+}, {
+"base": "Resource",
 "class": "SoulCaptureSkillAction",
 "language": "GDScript",
 "path": "res://scripts/skill_actions/SoulCapture.gd"
+}, {
+"base": "Resource",
+"class": "StatAdder",
+"language": "GDScript",
+"path": "res://scripts/skill_actions/StatAdder.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
 "FunctionCallerSkillAction": "",
 "HUD": "",
+"MaterialChangeEffect": "",
 "MultiProjectileCaster": "",
+"ObjectCreator": "",
 "ProjectileCaster": "",
+"ShaderPassEffect": "",
 "SkillAction": "",
 "SkillData": "",
-"SoulCaptureSkillAction": ""
+"SkillEffect": "",
+"SoulCaptureSkillAction": "",
+"StatAdder": ""
 }
 
 [application]
