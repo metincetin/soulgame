@@ -9,8 +9,9 @@ var skill_container
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	._ready()
 	skill_container = get_node("Skills")
-	get_tree().root.get_node("Level1/UI/QSkillSlot").skill = skill_container.get_skill("Q")
+	get_tree().root.get_node("Scene/MainUI/UI/QSkillSlot").skill = skill_container.get_skill("Q")
 	pass # Replace with function body.
 
 func _unhandled_input(event):
@@ -29,6 +30,16 @@ func _unhandled_input(event):
 func try_cast(skill):
 	if skill == null:	return
 	skill.cast(self)
+	
+func try_deal_primary_damage():
+	var bodies = $Area.get_overlapping_bodies()
+	for body in bodies:
+		if body == self:	continue
+		if body.has_method("damage"):
+			print("damaging: " + str(body))
+			body.damage(10)
+			return
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -17,7 +17,7 @@ func _input(event):
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if event is InputEventMouseMotion:
 		handle_rotation(event.relative)
-		print(event.relative)
+
 	
 func _physics_process(delta):
 	var dir = Vector3()

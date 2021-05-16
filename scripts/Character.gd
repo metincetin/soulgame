@@ -14,7 +14,7 @@ var _health:float
 export var speed:float = 4
 export var dash_force:float = 0
 
-signal health_change
+signal health_changed
 
 
 var linear_velocity:Vector3
@@ -57,19 +57,22 @@ func move(direction):
 pass
 
 func damage(val):
-	health -= val
+	set_health(get_health() - val)
 	pass
 func die():
 	queue_free()
 	pass
-	
+
+func try_deal_primary_damage():
+	pass
+
 func get_health():	return _health
 func set_health(val):
 	_health = val
 	if (_health<=0):
 		die()
 	_health = clamp(_health,0, max_health)
-	emit_signal("health_change",_health)
+	emit_signal("health_changed",_health)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

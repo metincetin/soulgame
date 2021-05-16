@@ -14,10 +14,10 @@ func _ready():
 	pass # Replace with function body.
 
 
-func update_values():
+func update_values(n = 0):
+	print("updating values")
 	if target == null:	return
 	value = target.health / target.max_health
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

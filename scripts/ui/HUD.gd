@@ -21,7 +21,7 @@ func register_enemy_healthbar(enemy:Character):
 	healthbar.target = enemy
 	get_node("Healthbars").add_child(healthbar)
 	healthbars.append(healthbar)
-	enemy.connect("health_change", healthbar,"update_value")
+	enemy.connect("health_changed", healthbar,"update_values")
 	pass
 func unregister_enemy_healthbar(enemy):
 	var h = null
