@@ -42,7 +42,7 @@ func dash():
 	var dir = linear_velocity.normalized()
 	
 	add_force(dir * dash_force)
-	print(dir * dash_force)
+
 	pass
 
 func move(direction):

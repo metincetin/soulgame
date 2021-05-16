@@ -18,10 +18,6 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		handle_rotation(event.relative)
 		print(event.relative)
-	if Input.is_action_just_pressed("movement_dash"):
-		print("dashing")
-		character.dash()
-	pass
 	
 func _physics_process(delta):
 	var dir = Vector3()

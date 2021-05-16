@@ -15,6 +15,7 @@ func _ready():
 
 
 func update_values():
+	if target == null:	return
 	value = target.health / target.max_health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
