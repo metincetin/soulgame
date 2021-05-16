@@ -18,7 +18,13 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			print("Slash")
-			get_node("Hand/AnimationTree")["parameters/playback"].travel("Slash1")
+			get_node("Hand/RightAnimation")["parameters/playback"].travel("Slash1")
+		if event.button_index == BUTTON_RIGHT:
+			if event.is_pressed():
+				get_node("Hand/LeftAnimation")["parameters/playback"].travel("magic")
+			#else:
+			#	get_node("Hand/LeftAnimation")["parameters/playback"].travel("magic_return")
+		
 	if event is InputEventKey:
 		if event.scancode == KEY_1:
 			try_cast(skill_container.get_skill("1"))
