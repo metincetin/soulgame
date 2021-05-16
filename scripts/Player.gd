@@ -14,6 +14,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			print("Slash")
+			get_node("Hand/AnimationTree")["parameters/playback"].travel("Slash1")
 	if event is InputEventKey:
 		if event.scancode == KEY_1:
 			try_cast(skill_container.get_skill("1"))
