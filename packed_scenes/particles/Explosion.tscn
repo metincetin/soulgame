@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 render_priority = 1
@@ -15,23 +15,23 @@ material = SubResource( 1 )
 radial_segments = 8
 rings = 4
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=10]
 offsets = PoolRealArray( 0, 0.804965 )
 colors = PoolColorArray( 0.953125, 0.486336, 0.0744629, 1, 0.858824, 0, 0, 0 )
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 
-[sub_resource type="SphereMesh" id=8]
-material = SubResource( 7 )
+[sub_resource type="SphereMesh" id=11]
+material = SubResource( 4 )
 radial_segments = 8
 rings = 4
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=12]
 colors = PoolColorArray( 0.234375, 0.234375, 0.234375, 1, 0, 0, 0, 0 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=7]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -44,8 +44,44 @@ emission_energy = 10.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="QuadMesh" id=6]
-material = SubResource( 5 )
+[sub_resource type="QuadMesh" id=8]
+material = SubResource( 7 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Light"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OmniLight:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ 0.0, 10.0, 0.0 ]
+}
+
+[sub_resource type="GDScript" id=13]
+script/source = "extends AnimationPlayer
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	play(\"Light\")
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [node name="Explosion" type="Spatial"]
 
@@ -62,25 +98,25 @@ spread = 30.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 12.0
 initial_velocity_random = 0.7
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 10 )
 
 [node name="Smoke" type="CPUParticles" parent="."]
 emitting = false
 one_shot = true
 explosiveness = 1.0
-mesh = SubResource( 8 )
+mesh = SubResource( 11 )
 direction = Vector3( 0, 1, 0 )
 spread = 70.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 4.0
-color_ramp = SubResource( 3 )
+color_ramp = SubResource( 12 )
 
 [node name="Sparkle" type="CPUParticles" parent="."]
 emitting = false
 amount = 14
 one_shot = true
 explosiveness = 1.0
-mesh = SubResource( 6 )
+mesh = SubResource( 8 )
 direction = Vector3( 0, 1, 0 )
 spread = 90.0
 gravity = Vector3( 0, -9.81, 0 )
@@ -88,6 +124,14 @@ initial_velocity = 20.0
 initial_velocity_random = 0.7
 scale_amount = 0.1
 color = Color( 0.972549, 0.843137, 0, 1 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+light_color = Color( 0.960784, 0.54902, 0.14902, 1 )
+light_energy = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Light = SubResource( 9 )
+script = SubResource( 13 )
 
 [connection signal="ready" from="Fire" to="Fire" method="set_emitting" binds= [ true ]]
 [connection signal="ready" from="Smoke" to="Smoke" method="set_emitting" binds= [ true ]]

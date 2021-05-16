@@ -9,6 +9,18 @@ export var max_health:float = 100
 var health:float setget set_health, get_health
 var _health:float
 
+var base_defence = 0.0
+var defence_multiplier = 1.0
+var total_defence:float setget , get_total_defence
+
+export var base_damage = 10.0
+var damage_multiplier = 1.0
+var total_damage:float setget , get_total_damage
+
+var base_speed = 40.0
+var speed_multiplier = 1.0
+var total_speed:float setget , get_total_speed
+
 
 
 export var speed:float = 4
@@ -52,11 +64,14 @@ func move(direction):
 		vertical_velocity += -9.81 * get_physics_process_delta_time()
 	else:
 		vertical_velocity = 0
-	linear_velocity = move_and_slide(direction * speed + Vector3.UP * vertical_velocity + external_forces, Vector3.UP)
+	linear_velocity = move_and_slide(direction * (speed * speed_multiplier) + Vector3.UP * vertical_velocity + external_forces, Vector3.UP)
 	external_forces = lerp(external_forces, Vector3.ZERO, 8 * get_physics_process_delta_time())
 pass
 
-func damage(val):
+func damage(val, use_defence = true):
+	if use_defence:
+		val = val - base_defence * defence_multiplier
+	val = max(val, 0.01)
 	set_health(get_health() - val)
 	pass
 func die():
@@ -73,6 +88,10 @@ func set_health(val):
 		die()
 	_health = clamp(_health,0, max_health)
 	emit_signal("health_changed",_health)
+
+func get_total_damage():	return base_damage * damage_multiplier
+func get_total_speed():	return base_speed * speed_multiplier
+func get_total_defence():	return base_defence * defence_multiplier
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

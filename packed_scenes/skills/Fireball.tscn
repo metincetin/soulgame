@@ -26,6 +26,7 @@ contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
 create_on_destroy = ExtResource( 2 )
+damage_percentage = 2.0
 
 [node name="CPUParticles" type="CPUParticles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00894117, 0, 0 )

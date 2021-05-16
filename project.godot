@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/skill_actions/FunctionCaller.gd"
 }, {
+"base": "Control",
+"class": "HUD",
+"language": "GDScript",
+"path": "res://scripts/ui/HUD.gd"
+}, {
+"base": "Resource",
+"class": "MultiProjectileCaster",
+"language": "GDScript",
+"path": "res://scripts/skill_actions/MultiProjectileCaster.gd"
+}, {
 "base": "Resource",
 "class": "ProjectileCaster",
 "language": "GDScript",
@@ -42,6 +52,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Character": "",
 "FunctionCallerSkillAction": "",
+"HUD": "",
+"MultiProjectileCaster": "",
 "ProjectileCaster": "",
 "SkillAction": "",
 "SkillData": "",

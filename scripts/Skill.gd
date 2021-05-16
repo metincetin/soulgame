@@ -6,6 +6,7 @@ export var hotkey = ""
 export var skill_data:Resource
 
 signal casted;
+signal selection_changed;
 
 var last_casted = 0.0
 
@@ -27,6 +28,10 @@ func cast(caster):
 	last_casted = OS.get_ticks_msec() * 0.001
 	emit_signal("casted")
 
+func select():
+	emit_signal("selection_changed", true)
+func deselect():
+	emit_signal("selection_changed", false)
 func remaining_time_rate():
 	var now = OS.get_ticks_msec() * 0.001
 	var diff = now - last_casted

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://scripts/SkillData.gd" type="Script" id=1]
+[ext_resource path="res://scripts/skill_actions/MultiProjectileCaster.gd" type="Script" id=2]
+[ext_resource path="res://packed_scenes/skills/Canister.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+projectile = ExtResource( 3 )
+amount = 4
+delay = 0.1
+
+[resource]
+script = ExtResource( 1 )
+skill_name = "Canister shot"
+description = ""
+skill_action = SubResource( 1 )
+skill_type = 0
+cast_rate = 2.0

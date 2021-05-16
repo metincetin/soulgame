@@ -1,5 +1,6 @@
 extends Control
 
+class_name HUD
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -7,13 +8,14 @@ extends Control
 
 
 var enemy_healthbar_scene = preload("res://packed_scenes/ui/EnemyHealthbar.tscn")
-
+var subtitle_label:Label
 var healthbars = []
 var camera:Camera
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	camera = get_viewport().get_camera()
+	subtitle_label = get_node("SubtitleLabel")
 	pass # Replace with function body.
 
 func register_enemy_healthbar(enemy:Character):
@@ -43,6 +45,11 @@ func _process(delta):
 		var pos = camera.unproject_position(hb.target.global_transform.origin + Vector3.UP * 4)
 		pos.x -= hb.rect_size.x / 2
 		hb.rect_position = pos
+		
+func set_subtitle(text, duration = 1):
+	subtitle_label.text = text
+	yield (get_tree().create_timer(duration),"timeout")
+	subtitle_label.text = ""
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

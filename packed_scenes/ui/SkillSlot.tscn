@@ -31,9 +31,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 1 )
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Overlay" type="ColorRect" parent="."]
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.72549 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectionOutline" type="ReferenceRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_color = Color( 0.956863, 0.635294, 0.0235294, 1 )
+border_width = 1.3
+editor_only = false
+__meta__ = {
+"_edit_use_anchors_": false
+}

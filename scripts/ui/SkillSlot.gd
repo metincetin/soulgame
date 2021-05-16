@@ -15,12 +15,21 @@ func get_skill():
 func set_skill(value):
 	if _skill != null:
 		_skill.disconnect("casted",self, "_on_skill_casted")
+		_skill.disconnect("selection_changed", self, "_on_skill_selection_changed")
 	_skill = value
-	$SkillIcon.texture = value.skill_data.icon
-	_skill.connect("casted", self, "_on_skill_casted")
-	
+	if (_skill != null):
+		$SkillIcon.texture = value.skill_data.icon
+		_skill.connect("casted", self, "_on_skill_casted")
+		_skill.connect("selection_changed", self, "_on_skill_selection_changed")
+	else:
+		$SkillIcon.texture = null
 func _on_skill_casted():
 	pass
+func _on_skill_selection_changed(value):
+	$SelectionOutline.visible = value
+	
+func _ready():
+	$Overlay.material = $Overlay.material.duplicate()
 func _process(delta):
 	if _skill == null:	return
 	overlay.material.set_shader_param("fill_rate",_skill.remaining_time_rate())
