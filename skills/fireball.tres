@@ -4,14 +4,14 @@
 [ext_resource path="res://packed_scenes/skills/Fireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/skill_actions/ProjectileCaster.gd" type="Script" id=3]
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="OpenSimplexNoise" id=1]
 
-[sub_resource type="NoiseTexture" id=3]
+[sub_resource type="NoiseTexture" id=2]
 width = 32
 height = 32
-noise = SubResource( 2 )
+noise = SubResource( 1 )
 
-[sub_resource type="Resource" id=1]
+[sub_resource type="Resource" id=3]
 script = ExtResource( 3 )
 projectile = ExtResource( 2 )
 
@@ -19,7 +19,7 @@ projectile = ExtResource( 2 )
 script = ExtResource( 1 )
 skill_name = ""
 description = ""
-icon = SubResource( 3 )
-skill_action = SubResource( 1 )
+icon = SubResource( 2 )
+skill_action = SubResource( 3 )
 skill_type = 0
 cast_rate = 1.0

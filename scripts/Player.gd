@@ -70,8 +70,10 @@ func try_deal_primary_damage():
 			body.damage(get_total_damage())
 			return
 			
-	var point = get_node("Camera/RayCast").get_collision_point()
-	$EffectHandler.create_wall_slash_particle(point)
+	var raycast = get_node("Camera/RayCast")
+	if raycast.is_colliding():
+		var point = get_node("Camera/RayCast").get_collision_point()
+		$EffectHandler.create_wall_slash_particle(point)
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
