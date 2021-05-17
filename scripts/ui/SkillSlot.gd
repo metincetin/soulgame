@@ -32,4 +32,4 @@ func _ready():
 	$Overlay.material = $Overlay.material.duplicate()
 func _process(delta):
 	if _skill == null:	return
-	overlay.material.set_shader_param("fill_rate",_skill.remaining_time_rate())
+	$Overlay.material.set_shader_param("fill_rate",_skill.remaining_time_rate())

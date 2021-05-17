@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://scripts/SkillData.gd" type="Script" id=1]
 [ext_resource path="res://scripts/skill_actions/ObjectCreator.gd" type="Script" id=2]
 [ext_resource path="res://packed_scenes/skills/GroundBreak.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/skill_effects/CameraShakeEffect.gd" type="Script" id=4]
+[ext_resource path="res://textures/skill_icons/ground_break.png" type="Texture" id=5]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -19,6 +20,7 @@ amplitude = 0.7
 script = ExtResource( 1 )
 skill_name = "Ground Break"
 description = ""
+icon = ExtResource( 5 )
 skill_action = SubResource( 1 )
 skill_effects = [ SubResource( 2 ) ]
 skill_type = 0

@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://textures/column2_tex.png" type="Texture" id=1]
+[ext_resource path="res://textures/skill_icons/canister.png" type="Texture" id=1]
 [ext_resource path="res://scripts/ui/SkillSlot.gd" type="Script" id=2]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
 
 uniform float fill_rate = 1;
@@ -12,15 +22,20 @@ void fragment(){
 	COLOR.a *= step(1. - UV.y, fill_rate);
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/fill_rate = 1.0
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/fill_rate = 0.0
 
 [node name="SkillSlot" type="Button"]
 margin_left = 120.0
 margin_top = 451.0
-margin_right = 184.0
-margin_bottom = 515.0
+margin_right = 179.0
+margin_bottom = 510.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -38,10 +53,10 @@ __meta__ = {
 }
 
 [node name="Overlay" type="ColorRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.72549 )
+color = Color( 0, 0, 0, 0.768627 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -1,32 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://packed_scenes/ui/SkillSlot.tscn" type="PackedScene" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Panel
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	$Layout.connect(\"sort_children\", self, \"_on_Layout_sort_children\")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_Layout_sort_children():
-	for c in $Layout.get_children():
-		c.rect_size.x = c.rect_size.y
-	pass # Replace with function body.
-"
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -44,12 +18,12 @@ margin_top = -133.0
 margin_right = 180.0
 margin_bottom = -67.0
 
-[node name="Skills" type="Panel" parent="."]
-margin_left = 292.0
-margin_top = 510.0
-margin_right = 766.0
-margin_bottom = 583.0
-script = SubResource( 1 )
+[node name="Skills" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -81.0
+margin_bottom = -32.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -62,60 +36,60 @@ margin_left = 2.0
 margin_top = 4.0
 margin_right = -2.0
 margin_bottom = -4.0
-custom_constants/separation = 123
+custom_constants/separation = 50
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="1" type="AspectRatioContainer" parent="Skills/Layout"]
-margin_left = 26.0
-margin_right = 38.0
-margin_bottom = 65.0
+margin_left = 435.0
+margin_right = 435.0
+margin_bottom = 41.0
 stretch_mode = 1
 
 [node name="SkillSlot" parent="Skills/Layout/1" instance=ExtResource( 1 )]
-margin_left = -26.5
+margin_left = -20.5
 margin_top = 0.0
-margin_right = 38.5
-margin_bottom = 65.0
+margin_right = 20.5
+margin_bottom = 41.0
 size_flags_vertical = 3
 
 [node name="2" type="AspectRatioContainer" parent="Skills/Layout"]
-margin_left = 161.0
-margin_right = 173.0
-margin_bottom = 65.0
+margin_left = 485.0
+margin_right = 485.0
+margin_bottom = 41.0
 stretch_mode = 1
 
 [node name="SkillSlot" parent="Skills/Layout/2" instance=ExtResource( 1 )]
-margin_left = -26.5
+margin_left = -20.5
 margin_top = 0.0
-margin_right = 38.5
-margin_bottom = 65.0
+margin_right = 20.5
+margin_bottom = 41.0
 size_flags_vertical = 3
 
 [node name="3" type="AspectRatioContainer" parent="Skills/Layout"]
-margin_left = 296.0
-margin_right = 308.0
-margin_bottom = 65.0
+margin_left = 535.0
+margin_right = 535.0
+margin_bottom = 41.0
 stretch_mode = 1
 
 [node name="SkillSlot" parent="Skills/Layout/3" instance=ExtResource( 1 )]
-margin_left = -26.5
+margin_left = -20.5
 margin_top = 0.0
-margin_right = 38.5
-margin_bottom = 65.0
+margin_right = 20.5
+margin_bottom = 41.0
 size_flags_vertical = 3
 
 [node name="4" type="AspectRatioContainer" parent="Skills/Layout"]
-margin_left = 431.0
-margin_right = 443.0
-margin_bottom = 65.0
+margin_left = 585.0
+margin_right = 585.0
+margin_bottom = 41.0
 stretch_mode = 1
 
 [node name="SkillSlot" parent="Skills/Layout/4" instance=ExtResource( 1 )]
-margin_left = -26.5
+margin_left = -20.5
 margin_top = 0.0
-margin_right = 38.5
-margin_bottom = 65.0
+margin_right = 20.5
+margin_bottom = 41.0
 size_flags_vertical = 3
