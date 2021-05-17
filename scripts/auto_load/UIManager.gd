@@ -7,10 +7,13 @@ extends Node
 
 var root:HUD
 
-func initialize_ui(root):
-	self.root = root
+func initialize_ui(r):
+	self.root = r
 	pass
-	
+func _ready():
+	print(get_node("/root/UIManager/MainUI/HUD"))
+	initialize_ui(get_node("/root/UIManager/MainUI/HUD"))
+	print(root)
 func register_enemy_healthbar(enemy:Character):
 	root.register_enemy_healthbar(enemy)
 

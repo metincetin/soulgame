@@ -93,8 +93,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Soulgame"
-run/main_scene="res://scenes/tests/MovementTest.tscn"
+run/main_scene="res://scenes/Level1.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+UIManager="*res://packed_scenes/autoload/UIManager.tscn"
 
 [editor_plugins]
 
