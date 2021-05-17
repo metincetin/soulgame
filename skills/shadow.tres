@@ -9,6 +9,8 @@
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
 stats = {
+"damage_multiplier": 0.4,
+"defence_multiplier": -0.1,
 "speed_multiplier": 0.1
 }
 endless_duration = false
@@ -34,4 +36,4 @@ icon = ExtResource( 3 )
 skill_action = SubResource( 1 )
 skill_effects = [ SubResource( 2 ), SubResource( 3 ) ]
 skill_type = 0
-cast_rate = 15.0
+cast_rate = 60.0

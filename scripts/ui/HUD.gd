@@ -42,7 +42,7 @@ func _process(delta):
 		var d = camera.global_transform.basis.z.dot(dirToTarget)
 		hb.visible = d <= 0 && camera.global_transform.origin.distance_to(hb.target.global_transform.origin) < 20
 		if !hb.visible:	return
-		var pos = camera.unproject_position(hb.target.global_transform.origin + Vector3.UP * 4)
+		var pos = camera.unproject_position(hb.target.global_transform.origin + Vector3.UP * 2.75)
 		pos.x -= hb.rect_size.x / 2
 		hb.rect_position = pos
 		
