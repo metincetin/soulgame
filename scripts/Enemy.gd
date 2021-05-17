@@ -10,7 +10,7 @@ extends Character
 func _ready():
 	._ready()
 	#yield(get_tree(), "idle_frame")
-	UIManager.register_enemy_healthbar(self)
+	UIManager.register_enemy_healthbar(self, get_node("HealthbarPosition"))
 	pass # Replace with function body.
 
 func _process(delta):
@@ -18,6 +18,7 @@ func _process(delta):
 	if (Input.is_key_pressed(KEY_P)):
 		health-=0.1
 func die():
+	.die()
 	UIManager.unregister_enemy_healthbar(self)
 	queue_free()
 	

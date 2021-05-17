@@ -12,6 +12,7 @@ size = Vector2( 1, 2 )
 
 [node name="CPUParticles" type="CPUParticles" parent="."]
 emitting = false
+amount = 20
 one_shot = true
 explosiveness = 1.0
 mesh = SubResource( 2 )
@@ -19,7 +20,7 @@ flag_align_y = true
 direction = Vector3( 0, 1, 0 )
 spread = 90.0
 initial_velocity = 15.0
-scale_amount = 0.2
-color = Color( 0.996078, 0.0705882, 0.0705882, 1 )
+scale_amount = 0.1
+color = Color( 0.596078, 0, 0, 1 )
 
 [connection signal="ready" from="CPUParticles" to="CPUParticles" method="set_emitting" binds= [ true ]]

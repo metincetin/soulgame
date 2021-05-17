@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "SkillEffect",
+"class": "CameraShakeEffect",
+"language": "GDScript",
+"path": "res://scripts/skill_effects/CameraShakeEffect.gd"
+}, {
 "base": "KinematicBody",
 "class": "Character",
 "language": "GDScript",
@@ -75,6 +80,7 @@ _global_script_classes=[ {
 "path": "res://scripts/skill_actions/StatAdder.gd"
 } ]
 _global_script_class_icons={
+"CameraShakeEffect": "",
 "Character": "",
 "FunctionCallerSkillAction": "",
 "HUD": "",

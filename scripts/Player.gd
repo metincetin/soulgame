@@ -21,11 +21,11 @@ func _ready():
 	raycast.add_exception(self)
 	magic_spawn_point = get_node(magic_spawn_point_path)
 	skill_container = get_node("Skills")
-	get_tree().root.get_node("Scene/MainUI/UI/QSkillSlot").skill = skill_container.get_skill("Q")
-	get_tree().root.get_node("Scene/MainUI/UI/Skills/Layout/1/SkillSlot").skill = skill_container.get_skill("1")
-	get_tree().root.get_node("Scene/MainUI/UI/Skills/Layout/2/SkillSlot").skill = skill_container.get_skill("2")
-	get_tree().root.get_node("Scene/MainUI/UI/Skills/Layout/3/SkillSlot").skill = skill_container.get_skill("3")
-	get_tree().root.get_node("Scene/MainUI/UI/Skills/Layout/4/SkillSlot").skill = skill_container.get_skill("4")
+	UIManager.root.get_node("../UI/QSkillSlot").skill = skill_container.get_skill("Q")
+	UIManager.root.get_node("../UI/Skills/Layout/1/SkillSlot").skill = skill_container.get_skill("1")
+	UIManager.root.get_node("../UI/Skills/Layout/2/SkillSlot").skill = skill_container.get_skill("2")
+	UIManager.root.get_node("../UI/Skills/Layout/3/SkillSlot").skill = skill_container.get_skill("3")
+	UIManager.root.get_node("../UI/Skills/Layout/4/SkillSlot").skill = skill_container.get_skill("4")
 	pass # Replace with function body.
 
 func _unhandled_input(event):
@@ -98,3 +98,6 @@ func try_deal_primary_damage():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func get_camera() -> Camera:
+	return get_node("Camera") as Camera

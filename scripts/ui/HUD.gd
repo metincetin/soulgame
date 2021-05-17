@@ -18,10 +18,11 @@ func _ready():
 	subtitle_label = get_node("SubtitleLabel")
 	pass # Replace with function body.
 
-func register_enemy_healthbar(enemy:Character):
+func register_enemy_healthbar(enemy:Character, positioner):
 	var healthbar = enemy_healthbar_scene.instance()
 	healthbar.target = enemy
-	get_node("Healthbars").add_child(healthbar)
+	healthbar.target_position = positioner
+	get_node("../../Healthbars/Container").add_child(healthbar)
 	healthbars.append(healthbar)
 	enemy.connect("health_changed", healthbar,"update_values")
 	pass
@@ -42,7 +43,7 @@ func _process(delta):
 		var d = camera.global_transform.basis.z.dot(dirToTarget)
 		hb.visible = d <= 0 && camera.global_transform.origin.distance_to(hb.target.global_transform.origin) < 20
 		if !hb.visible:	return
-		var pos = camera.unproject_position(hb.target.global_transform.origin + Vector3.UP * 2.75)
+		var pos = camera.unproject_position(hb.target_position.global_transform.origin)
 		pos.x -= hb.rect_size.x / 2
 		hb.rect_position = pos
 		
