@@ -5,7 +5,7 @@
 [ext_resource path="res://scripts/skill_actions/ProjectileCaster.gd" type="Script" id=3]
 [ext_resource path="res://textures/skill_icons/dark_cast.png" type="Texture" id=4]
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
 projectile = ExtResource( 2 )
 
@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 skill_name = "Dark Cast"
 description = "Cast a simple dark projectile, dealing huge damage to the target"
 icon = ExtResource( 4 )
-skill_action = SubResource( 3 )
+skill_action = SubResource( 1 )
 skill_effects = [  ]
 skill_type = 0
 cast_rate = 6.0

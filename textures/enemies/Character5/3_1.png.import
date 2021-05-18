@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Character3.png-d028ad8e7c68ca70e82560fc194e29ef.stex"
+path="res://.import/3_1.png-a7cc1d601b5c8741f31e86a1ff9c9786.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/enemies/Character3.png"
-dest_files=[ "res://.import/Character3.png-d028ad8e7c68ca70e82560fc194e29ef.stex" ]
+source_file="res://textures/enemies/Character5/3_1.png"
+dest_files=[ "res://.import/3_1.png-a7cc1d601b5c8741f31e86a1ff9c9786.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
