@@ -9,6 +9,7 @@
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
 create = ExtResource( 3 )
+relative_node = ""
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 4 )

@@ -8,6 +8,8 @@ extends Character
 var skill_container
 var selected_skill
 
+var can_cast = true
+
 var raycast:RayCast
 export var magic_spawn_point_path:NodePath
 var magic_spawn_point:Position3D
@@ -32,7 +34,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.is_pressed():
 			get_node("Hand/RightAnimation")["parameters/playback"].travel("Slash1")
-		if event.button_index == BUTTON_RIGHT:
+		if event.button_index == BUTTON_RIGHT && can_cast:
 			if event.is_pressed() && selected_skill!=null && selected_skill.can_cast(self):
 				get_node("Hand/LeftAnimation")["parameters/playback"].travel("magic")
 			#else:
@@ -66,6 +68,7 @@ func try_cast_selected():
 	try_cast(selected_skill)
 func try_cast(skill):
 	if skill == null:	return
+
 	skill.cast(self)
 	
 func try_deal_primary_damage():

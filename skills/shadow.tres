@@ -13,7 +13,6 @@ stats = {
 "defence_multiplier": -0.1,
 "speed_multiplier": 0.1
 }
-endless_duration = false
 effect_duration = 10.0
 
 [sub_resource type="Resource" id=2]

@@ -78,6 +78,11 @@ _global_script_classes=[ {
 "class": "StatAdder",
 "language": "GDScript",
 "path": "res://scripts/skill_actions/StatAdder.gd"
+}, {
+"base": "Resource",
+"class": "StatSetter",
+"language": "GDScript",
+"path": "res://scripts/skill_actions/StatSetter.gd"
 } ]
 _global_script_class_icons={
 "CameraShakeEffect": "",
@@ -93,7 +98,8 @@ _global_script_class_icons={
 "SkillData": "",
 "SkillEffect": "",
 "SoulCaptureSkillAction": "",
-"StatAdder": ""
+"StatAdder": "",
+"StatSetter": ""
 }
 
 [application]
