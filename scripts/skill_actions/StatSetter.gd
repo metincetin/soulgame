@@ -30,7 +30,7 @@ func revert_stats(caster):
 	for i in revert.keys().size():
 		var key = revert.keys()[i]
 		var value = revert.values()[i]
-		caster.set(key,caster.get(key))
+		caster.set(key, value)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

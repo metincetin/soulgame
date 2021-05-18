@@ -10,6 +10,8 @@ var selected_skill
 
 var can_cast = true
 
+var magic_autoreturn setget set_magic_autoreturn, get_magic_autoreturn
+
 var raycast:RayCast
 export var magic_spawn_point_path:NodePath
 var magic_spawn_point:Position3D
@@ -104,3 +106,11 @@ func try_deal_primary_damage():
 
 func get_camera() -> Camera:
 	return get_node("Camera") as Camera
+	
+func get_magic_autoreturn():
+	return get_node("Hand/LeftAnimation")["parameters/conditions/magic_autoreturn"]
+func set_magic_autoreturn(val):
+	get_node("Hand/LeftAnimation")["parameters/conditions/magic_autoreturn"] = val
+
+func delete_skill_object(path):
+	get_node(path).queue_free()

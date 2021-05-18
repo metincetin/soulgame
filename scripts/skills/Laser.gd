@@ -8,6 +8,7 @@ extends Spatial
 var caster
 var raycast:RayCast
 var mesh:MeshInstance
+export var damage = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	raycast = $RayCast
@@ -18,9 +19,11 @@ func _ready():
 func _physics_process(delta):
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
-		mesh.scale.z = raycast.get_collision_point().distance_to(global_transform.origin)
+		if collider.has_method("damage"):
+			collider.damage(caster.total_damage * damage * delta)
+		scale.z = lerp(scale.z, raycast.get_collision_point().distance_to(global_transform.origin), 8 * delta)
 	else:
-		mesh.scale.z = 100
+		scale.z = lerp(scale.z, 100, 8 * delta)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

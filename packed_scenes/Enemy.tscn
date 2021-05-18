@@ -10,18 +10,17 @@ height = 1.7
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
 loop = true
-step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite3D:frame_coords")
 tracks/0/interp = 1
-tracks/0/loop_wrap = false
+tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.75 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 0 ), Vector2( 4, 0 ) ]
+"values": [ Vector2( 1, 0 ), Vector2( 4, 0 ), Vector2( 1, 0 ) ]
 }
 
 [node name="Enemy" type="KinematicBody"]
