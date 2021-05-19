@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Projectile.gd" type="Script" id=1]
-[ext_resource path="res://packed_scenes/particles/Explosion.tscn" type="PackedScene" id=2]
+[ext_resource path="res://packed_scenes/particles/DarkExplosion.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 vertex_color_use_as_albedo = true
@@ -15,12 +15,12 @@ rings = 4
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.492908, 1 )
-colors = PoolColorArray( 0.986816, 0.748785, 0, 1, 0.926758, 0.0217209, 0.0217209, 1, 0.333008, 0, 0, 1 )
+colors = PoolColorArray( 0.537255, 0, 0.380392, 1, 0.926758, 0.0217209, 0.0217209, 1, 0.333008, 0, 0, 1 )
 
 [sub_resource type="SphereShape" id=4]
 radius = 0.5
 
-[node name="Fireball" type="RigidBody"]
+[node name="DarkCast" type="RigidBody"]
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true

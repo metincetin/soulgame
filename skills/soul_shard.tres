@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://scripts/SkillData.gd" type="Script" id=1]
+[ext_resource path="res://packed_scenes/skills/SoulShard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/skill_actions/ProjectileCaster.gd" type="Script" id=3]
+[ext_resource path="res://textures/blood.png" type="Texture" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+projectile = ExtResource( 2 )
+
+[resource]
+script = ExtResource( 1 )
+skill_name = "Soul Shard"
+description = "Launches a fast and sharp soul sharp"
+icon = ExtResource( 4 )
+skill_action = SubResource( 1 )
+skill_effects = [  ]
+skill_type = 0
+cast_rate = 6.0
