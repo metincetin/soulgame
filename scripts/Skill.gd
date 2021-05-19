@@ -10,8 +10,14 @@ signal selection_changed;
 
 var last_casted = 0.0
 
+func initialize(caster):
+	if skill_data.skill_type == 1:
+		# as passive skills cant be casted, cast it here manually once
+		skill_data.cast(caster)
+
 func _ready():
 	last_casted = -skill_data.cast_rate
+				
 
 func can_cast(caster):
 	var now = OS.get_ticks_msec() * 0.001

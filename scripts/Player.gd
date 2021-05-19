@@ -8,6 +8,11 @@ extends Character
 var skill_container
 var selected_skill
 
+var rotting_speed = 1
+var rotting_speed_multiplier = 1
+
+var gold_income_multiplier = 1
+
 var can_cast = true
 
 var magic_autoreturn setget set_magic_autoreturn, get_magic_autoreturn
