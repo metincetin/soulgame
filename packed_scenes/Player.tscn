@@ -1,16 +1,258 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
 [ext_resource path="res://scripts/PlayerCamera.gd" type="Script" id=3]
+[ext_resource path="res://packed_scenes/particles/slash_particle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://packed_scenes/particles/BloodSplash.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/Skill.gd" type="Script" id=6]
+[ext_resource path="res://scripts/SkillContainer.gd" type="Script" id=7]
+[ext_resource path="res://skills/dash.tres" type="Resource" id=8]
+[ext_resource path="res://skills/fireball.tres" type="Resource" id=9]
+[ext_resource path="res://skills/soul_capture.tres" type="Resource" id=10]
+[ext_resource path="res://skills/laser.tres" type="Resource" id=11]
+[ext_resource path="res://skills/canister_shot.tres" type="Resource" id=12]
+[ext_resource path="res://skills/shadow.tres" type="Resource" id=13]
+[ext_resource path="res://textures/sword/7_1.png" type="Texture" id=14]
+[ext_resource path="res://textures/sword/2_1.png" type="Texture" id=15]
+[ext_resource path="res://textures/sword/6_1.png" type="Texture" id=16]
+[ext_resource path="res://textures/sword/3_1.png" type="Texture" id=17]
+[ext_resource path="res://textures/sword/0_1.png" type="Texture" id=18]
+[ext_resource path="res://textures/sword/1_1.png" type="Texture" id=19]
+[ext_resource path="res://textures/sword/4_1.png" type="Texture" id=20]
+[ext_resource path="res://textures/sword/5_1.png" type="Texture" id=21]
+[ext_resource path="res://textures/axe/8_1.png" type="Texture" id=22]
+[ext_resource path="res://textures/axe/5_1.png" type="Texture" id=23]
+[ext_resource path="res://textures/axe/1_1.png" type="Texture" id=24]
+[ext_resource path="res://textures/axe/0_1.png" type="Texture" id=26]
+[ext_resource path="res://textures/magic/3_1.png" type="Texture" id=27]
+[ext_resource path="res://textures/axe/6_1.png" type="Texture" id=28]
+[ext_resource path="res://textures/axe/2_1.png" type="Texture" id=29]
+[ext_resource path="res://textures/axe/9_1.png" type="Texture" id=30]
+[ext_resource path="res://textures/magic/2_1.png" type="Texture" id=31]
+[ext_resource path="res://textures/magic/1_1.png" type="Texture" id=32]
+[ext_resource path="res://textures/axe/4_1.png" type="Texture" id=33]
+[ext_resource path="res://textures/magic/0_1.png" type="Texture" id=34]
+[ext_resource path="res://textures/axe/3_1.png" type="Texture" id=35]
+[ext_resource path="res://textures/magic/4_1.png" type="Texture" id=36]
+[ext_resource path="res://textures/axe/7_1.png" type="Texture" id=37]
+[ext_resource path="res://scripts/EffectHandler.gd" type="Script" id=38]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.7
 
+[sub_resource type="ShaderMaterial" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "sword_idle"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "sword_slash1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/Idle/node = SubResource( 3 )
+states/Idle/position = Vector2( 235, 53 )
+states/Slash1/node = SubResource( 4 )
+states/Slash1/position = Vector2( 467, 53 )
+transitions = [ "Idle", "Slash1", SubResource( 5 ), "Slash1", "Idle", SubResource( 6 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="Animation" id=9]
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Control/Right:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 26 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Control/Right:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 2, 2, 2, 16, 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ), ExtResource( 29 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 23 ), ExtResource( 28 ), ExtResource( 37 ), ExtResource( 22 ), ExtResource( 30 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "try_deal_primary_damage"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Control/Right:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 18 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.57
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Control/Right:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 19 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 16 ), ExtResource( 14 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.39 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "try_deal_primary_damage"
+} ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Magic"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Magic Return"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+advance_condition = "magic_autoreturn"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/Idle/node = SubResource( 13 )
+states/Idle/position = Vector2( 202, 53 )
+states/magic/node = SubResource( 14 )
+states/magic/position = Vector2( 400, 53 )
+states/magic_return/node = SubResource( 15 )
+states/magic_return/position = Vector2( 288, 130 )
+transitions = [ "magic", "magic_return", SubResource( 16 ), "Idle", "magic", SubResource( 17 ), "magic_return", "Idle", SubResource( 18 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -70, -24 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
+[sub_resource type="Animation" id=21]
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Control/Left:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0915054 ),
+"update": 1,
+"values": [ ExtResource( 34 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Control/Left:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 2.37841, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 32 ), ExtResource( 31 ), ExtResource( 27 ), ExtResource( 36 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "try_cast_selected"
+} ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Control/Left:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1.36604, 1.36604, 1.36604 ),
+"update": 1,
+"values": [ ExtResource( 27 ), ExtResource( 31 ), ExtResource( 32 ) ]
+}
+
+[sub_resource type="SphereShape" id=24]
+radius = 2.0
+
 [node name="Player" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28952, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.18383, -2.72922, -7.48857 )
 script = ExtResource( 1 )
+base_damage = 20.0
+speed = 6.0
+dash_force = 25.0
+magic_spawn_point_path = NodePath("Camera/MagicDefaultSpawnPoint")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.35, 0 )
@@ -23,3 +265,116 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39036, 0 )
 current = true
 script = ExtResource( 3 )
+
+[node name="RayCast" type="RayCast" parent="Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -2 )
+
+[node name="InteractionRaycast" type="RayCast" parent="Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -4 )
+collide_with_areas = true
+
+[node name="MagicDefaultSpawnPoint" type="Position3D" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.173196, -0.110603, -0.431602 )
+
+[node name="Skills" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="SkillQ" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "Q"
+skill_data = ExtResource( 10 )
+
+[node name="Skill1" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "1"
+skill_data = ExtResource( 9 )
+
+[node name="Skill2" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "2"
+skill_data = ExtResource( 12 )
+
+[node name="Skill3" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "3"
+skill_data = ExtResource( 13 )
+
+[node name="Skill4" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "4"
+skill_data = ExtResource( 11 )
+
+[node name="SkillSpace" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "Space"
+skill_data = ExtResource( 8 )
+
+[node name="Hand" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Hand"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="TextureRect" parent="Hand/Control"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 18 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureRect" parent="Hand/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 34 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightAnimation" type="AnimationTree" parent="Hand"]
+tree_root = SubResource( 7 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/playback = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand/RightAnimation"]
+anims/axe_idle = SubResource( 9 )
+anims/axe_slash1 = SubResource( 10 )
+anims/sword_idle = SubResource( 11 )
+anims/sword_slash1 = SubResource( 12 )
+
+[node name="LeftAnimation" type="AnimationTree" parent="Hand"]
+tree_root = SubResource( 19 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/playback = SubResource( 20 )
+parameters/conditions/magic_autoreturn = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand/LeftAnimation"]
+anims/Idle = SubResource( 21 )
+anims/Magic = SubResource( 22 )
+"anims/Magic Return" = SubResource( 23 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+shape = SubResource( 24 )
+
+[node name="EffectHandler" type="Node" parent="."]
+script = ExtResource( 38 )
+slash_particle = ExtResource( 4 )
+blood_particle = ExtResource( 5 )

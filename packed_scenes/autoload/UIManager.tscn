@@ -1,24 +1,213 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://packed_scenes/UI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://packed_scenes/ui/MainUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/ui/OverheadUIElementsController.gd" type="Script" id=1]
+[ext_resource path="res://packed_scenes/ui/SkillSlot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/auto_load/UIManager.gd" type="Script" id=3]
+[ext_resource path="res://textures/ui/ui_background.png" type="Texture" id=4]
+[ext_resource path="res://packed_scenes/ui/KeyTutorial.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 117, 117 )
 
 [node name="UIManager" type="Node"]
 script = ExtResource( 3 )
 
-[node name="MainUI" parent="." instance=ExtResource( 2 )]
+[node name="MainUI" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enable = true
+
+[node name="Game" type="CanvasLayer" parent="MainUI"]
 layer = 2
 
-[node name="UI" parent="MainUI" instance=ExtResource( 1 )]
+[node name="SubtitleLabel" type="Label" parent="MainUI/Game"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -132.715
+margin_bottom = -70.715
+text = "So that's how it works ooooo"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Healthbars" type="CanvasLayer" parent="."]
-layer = 0
-
-[node name="Container" type="Control" parent="Healthbars"]
+[node name="SkillsContainer" type="Control" parent="MainUI/Game"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="QSkillSlot" parent="MainUI/Game/SkillsContainer" instance=ExtResource( 2 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 114.0
+margin_top = -133.0
+margin_right = 180.0
+margin_bottom = -67.0
+custom_styles/normal = SubResource( 1 )
+
+[node name="Skills" type="Control" parent="MainUI/Game/SkillsContainer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -81.0
+margin_bottom = -32.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="HBoxContainer" parent="MainUI/Game/SkillsContainer/Skills"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 4.0
+margin_right = -2.0
+margin_bottom = -4.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
+margin_left = 435.0
+margin_right = 435.0
+margin_bottom = 41.0
+stretch_mode = 1
+
+[node name="SkillSlot" parent="MainUI/Game/SkillsContainer/Skills/Layout/1" instance=ExtResource( 2 )]
+margin_left = -20.5
+margin_top = 0.0
+margin_right = 20.5
+margin_bottom = 41.0
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 1 )
+
+[node name="2" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
+margin_left = 485.0
+margin_right = 485.0
+margin_bottom = 41.0
+stretch_mode = 1
+
+[node name="SkillSlot" parent="MainUI/Game/SkillsContainer/Skills/Layout/2" instance=ExtResource( 2 )]
+margin_left = -20.5
+margin_top = 0.0
+margin_right = 20.5
+margin_bottom = 41.0
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 1 )
+
+[node name="3" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
+margin_left = 535.0
+margin_right = 535.0
+margin_bottom = 41.0
+stretch_mode = 1
+
+[node name="SkillSlot" parent="MainUI/Game/SkillsContainer/Skills/Layout/3" instance=ExtResource( 2 )]
+margin_left = -20.5
+margin_top = 0.0
+margin_right = 20.5
+margin_bottom = 41.0
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 1 )
+
+[node name="4" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
+margin_left = 585.0
+margin_right = 585.0
+margin_bottom = 41.0
+stretch_mode = 1
+
+[node name="SkillSlot" parent="MainUI/Game/SkillsContainer/Skills/Layout/4" instance=ExtResource( 2 )]
+margin_left = -20.5
+margin_top = 0.0
+margin_right = 20.5
+margin_bottom = 41.0
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 1 )
+
+[node name="Interaction" type="Label" parent="MainUI/Game"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_bottom = 7.0
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overhead" type="CanvasLayer" parent="MainUI/Game"]
+layer = 0
+script = ExtResource( 1 )
+
+[node name="Healthbars" type="Control" parent="MainUI/Game/Overhead"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tutorial" type="CanvasLayer" parent="MainUI"]
+
+[node name="KeyTutorial" type="Control" parent="MainUI/Tutorial"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/Tutorial/KeyTutorial"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -30.0
+margin_right = 120.0
+margin_bottom = 32.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="MainUI/Tutorial/KeyTutorial/HBoxContainer"]
+margin_right = 120.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="MainUI/Tutorial/KeyTutorial/HBoxContainer/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "E"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainUI/Tutorial/KeyTutorial/HBoxContainer"]
+margin_left = 120.0
+margin_top = 24.0
+margin_right = 240.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+text = "Cast Soul Capture"

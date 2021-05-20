@@ -45,8 +45,8 @@ actions = [ SubResource( 1 ), SubResource( 2 ), SubResource( 4 ) ]
 [sub_resource type="Resource" id=6]
 script = ExtResource( 9 )
 duration = 5.0
-frequency = 1.0
-amplitude = 0.2
+frequency = 0.02
+amplitude = 0.02
 
 [resource]
 script = ExtResource( 1 )

@@ -18,23 +18,31 @@ var can_cast = true
 var magic_autoreturn setget set_magic_autoreturn, get_magic_autoreturn
 
 var raycast:RayCast
+var interaction_raycast:RayCast
+
 export var magic_spawn_point_path:NodePath
 var magic_spawn_point:Position3D
+
+var target_interactable
 
 signal selected_skill_changed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	._ready()
+	RoomInstance.player = self
 	raycast = get_node("Camera/RayCast")
 	raycast.add_exception(self)
+	interaction_raycast = get_node("Camera/InteractionRaycast")
+	interaction_raycast.add_exception(self)
 	magic_spawn_point = get_node(magic_spawn_point_path)
 	skill_container = get_node("Skills")
-	UIManager.root.get_node("../UI/QSkillSlot").skill = skill_container.get_skill("Q")
-	UIManager.root.get_node("../UI/Skills/Layout/1/SkillSlot").skill = skill_container.get_skill("1")
-	UIManager.root.get_node("../UI/Skills/Layout/2/SkillSlot").skill = skill_container.get_skill("2")
-	UIManager.root.get_node("../UI/Skills/Layout/3/SkillSlot").skill = skill_container.get_skill("3")
-	UIManager.root.get_node("../UI/Skills/Layout/4/SkillSlot").skill = skill_container.get_skill("4")
+
+	UIManager.get_skill_slot("Q").skill = skill_container.get_skill("Q")
+	UIManager.get_skill_slot("1").skill = skill_container.get_skill("1")
+	UIManager.get_skill_slot("2").skill = skill_container.get_skill("2")
+	UIManager.get_skill_slot("3").skill = skill_container.get_skill("3")
+	UIManager.get_skill_slot("4").skill = skill_container.get_skill("4")
 	pass # Replace with function body.
 
 func _unhandled_input(event):
@@ -48,6 +56,9 @@ func _unhandled_input(event):
 			#	get_node("Hand/LeftAnimation")["parameters/playback"].travel("magic_return")
 		
 	if event is InputEventKey:
+		if event.is_action_pressed("interact"):
+			if target_interactable != null:
+				target_interactable.interact(self)
 		match event.scancode:
 			KEY_1:
 				select_skill(skill_container.get_skill("1"))
@@ -62,7 +73,6 @@ func _unhandled_input(event):
 			try_cast(skill_container.get_skill("Q"))
 		if event.scancode == KEY_SPACE:
 			try_cast(skill_container.get_skill("Space"))
-
 
 func select_skill(skill):
 	if (selected_skill != null):
@@ -88,26 +98,22 @@ func try_deal_primary_damage():
 			$EffectHandler.create_blood_particle(raycast.get_collision_point())
 		else:
 			$EffectHandler.create_wall_slash_particle(raycast.get_collision_point())
-	
-#	for body in bodies:
-#		if body == self:	continue
-#		if body.has_method("damage"):
-#			print("damaging: " + str(body))
-#			body.damage(get_total_damage())
-#
-#			if raycast.is_colliding():
-#				var point = raycast.get_collision_point()
-#				$EffectHandler.create_blood_particle(point)
-#			return
-#
-#
-#	if raycast.is_colliding():
-#		var point = raycast.get_collision_point()
-#		$EffectHandler.create_wall_slash_particle(point)
 	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	
+	
+func die():
+	pass
+
+func _process(delta):
+	if interaction_raycast.is_colliding():
+		if interaction_raycast.get_collider() is Interactable:
+			if target_interactable!= null && target_interactable != interaction_raycast.get_collider():
+				target_interactable.deselect()
+			target_interactable = interaction_raycast.get_collider()
+			target_interactable.select();
+			return
+	if target_interactable!=null:	target_interactable.deselect()
+	target_interactable = null
 
 func get_camera() -> Camera:
 	return get_node("Camera") as Camera

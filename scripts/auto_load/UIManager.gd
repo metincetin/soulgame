@@ -5,16 +5,26 @@ extends Node
 # var a = 2
 # var b = "text"
 
-var root:HUD
+var root
+var game_ui
+var overhead
 
 func initialize_ui(r):
-	self.root = r
+	root = r
+	game_ui = root.get_node("Game")
+	overhead = game_ui.get_node("Overhead")
 	pass
 func _ready():
-	initialize_ui(get_node("/root/UIManager/MainUI/HUD"))
-	print(root)
+	initialize_ui(get_node("/root/UIManager/MainUI"))
+func get_skill_slot(slot):
+	match slot:
+		"Q":	return game_ui.get_node("SkillsContainer/QSkillSlot")
+		_:		return game_ui.get_node("SkillsContainer/Skills/Layout/"+slot+"/SkillSlot")
+
 func register_enemy_healthbar(enemy:Character, positioner):
-	root.register_enemy_healthbar(enemy, positioner)
+	overhead.register_enemy_healthbar(enemy, positioner)
 
 func unregister_enemy_healthbar(enemy:Character):
-	root.unregister_enemy_healthbar(enemy)
+	overhead.unregister_enemy_healthbar(enemy)
+func get_interaction_text():
+	return game_ui.get_node("Interaction")
