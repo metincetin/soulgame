@@ -21,8 +21,11 @@ func _process(delta):
 	var dist = RoomInstance.player.global_transform.origin.distance_to(global_transform.origin)
 	if dist < follow_distance:
 		follow_player()
+		$AnimationPlayer.play("Move")
 		if dist < attack_distance:
 			try_deal_primary_damage()
+	else:
+		$AnimationPlayer.play("Idle")
 	
 func follow_player():
 	var dir = RoomInstance.player.global_transform.origin - global_transform.origin
