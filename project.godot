@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/skill_actions/FunctionCaller.gd"
 }, {
-"base": "Area",
+"base": "CollisionObject",
 "class": "Interactable",
 "language": "GDScript",
 "path": "res://scripts/Interactable.gd"

@@ -44,45 +44,45 @@ height = 1.7
 
 [sub_resource type="ShaderMaterial" id=2]
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "axe_idle"
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "axe_slash1"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "sword_idle"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "sword_slash1"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=7]
-states/axe_idle/node = SubResource( 25 )
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/axe_idle/node = SubResource( 3 )
 states/axe_idle/position = Vector2( 325, 128 )
-states/axe_slash/node = SubResource( 26 )
+states/axe_slash/node = SubResource( 4 )
 states/axe_slash/position = Vector2( 641, 126 )
-states/sword_idle/node = SubResource( 3 )
+states/sword_idle/node = SubResource( 5 )
 states/sword_idle/position = Vector2( 325, 58 )
-states/sword_slash/node = SubResource( 4 )
+states/sword_slash/node = SubResource( 6 )
 states/sword_slash/position = Vector2( 641, 58 )
-transitions = [ "sword_idle", "sword_slash", SubResource( 5 ), "sword_slash", "sword_idle", SubResource( 6 ), "axe_idle", "axe_slash", SubResource( 27 ), "axe_slash", "axe_idle", SubResource( 28 ) ]
+transitions = [ "sword_idle", "sword_slash", SubResource( 7 ), "sword_slash", "sword_idle", SubResource( 8 ), "axe_idle", "axe_slash", SubResource( 9 ), "axe_slash", "axe_idle", SubResource( 10 ) ]
 graph_offset = Vector2( -105, -13 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=13]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Right:texture")
 tracks/0/interp = 1
@@ -96,7 +96,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 26 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=14]
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Right:texture")
@@ -125,7 +125,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=15]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Right:texture")
 tracks/0/interp = 1
@@ -139,7 +139,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 18 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=16]
 length = 0.57
 step = 0.03
 tracks/0/type = "value"
@@ -169,39 +169,39 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Magic"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "Magic Return"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 switch_mode = 2
 advance_condition = "magic_autoreturn"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=19]
-states/Idle/node = SubResource( 13 )
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/Idle/node = SubResource( 17 )
 states/Idle/position = Vector2( 202, 53 )
-states/magic/node = SubResource( 14 )
+states/magic/node = SubResource( 18 )
 states/magic/position = Vector2( 400, 53 )
-states/magic_return/node = SubResource( 15 )
+states/magic_return/node = SubResource( 19 )
 states/magic_return/position = Vector2( 288, 130 )
-transitions = [ "magic", "magic_return", SubResource( 16 ), "Idle", "magic", SubResource( 17 ), "magic_return", "Idle", SubResource( 18 ) ]
+transitions = [ "magic", "magic_return", SubResource( 20 ), "Idle", "magic", SubResource( 21 ), "magic_return", "Idle", SubResource( 22 ) ]
 start_node = "Idle"
 graph_offset = Vector2( -70, -24 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=25]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Left:texture")
 tracks/0/interp = 1
@@ -215,7 +215,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 34 ) ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=26]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Left:texture")
@@ -244,7 +244,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=27]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Left:texture")
@@ -259,7 +259,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 27 ), ExtResource( 31 ), ExtResource( 32 ) ]
 }
 
-[sub_resource type="SphereShape" id=24]
+[sub_resource type="SphereShape" id=28]
 radius = 2.0
 
 [node name="Player" type="KinematicBody"]
@@ -362,34 +362,34 @@ __meta__ = {
 }
 
 [node name="RightAnimation" type="AnimationTree" parent="Hand"]
-tree_root = SubResource( 7 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("AnimationPlayer")
 active = true
-parameters/playback = SubResource( 8 )
+parameters/playback = SubResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hand/RightAnimation"]
-anims/axe_idle = SubResource( 9 )
-anims/axe_slash1 = SubResource( 10 )
-anims/sword_idle = SubResource( 11 )
-anims/sword_slash1 = SubResource( 12 )
+anims/axe_idle = SubResource( 13 )
+anims/axe_slash1 = SubResource( 14 )
+anims/sword_idle = SubResource( 15 )
+anims/sword_slash1 = SubResource( 16 )
 
 [node name="LeftAnimation" type="AnimationTree" parent="Hand"]
-tree_root = SubResource( 19 )
+tree_root = SubResource( 23 )
 anim_player = NodePath("AnimationPlayer")
 active = true
-parameters/playback = SubResource( 20 )
+parameters/playback = SubResource( 24 )
 parameters/conditions/magic_autoreturn = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hand/LeftAnimation"]
-anims/Idle = SubResource( 21 )
-anims/Magic = SubResource( 22 )
-"anims/Magic Return" = SubResource( 23 )
+anims/Idle = SubResource( 25 )
+anims/Magic = SubResource( 26 )
+"anims/Magic Return" = SubResource( 27 )
 
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-shape = SubResource( 24 )
+shape = SubResource( 28 )
 
 [node name="EffectHandler" type="Node" parent="."]
 script = ExtResource( 38 )

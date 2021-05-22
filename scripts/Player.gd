@@ -23,7 +23,7 @@ var interaction_raycast:RayCast
 export var magic_spawn_point_path:NodePath
 var magic_spawn_point:Position3D
 
-var soul_capture_target:Enemy
+var soul_capture_target
 
 var _weapon
 var weapon = 0 setget set_weapon, get_weapon
@@ -90,10 +90,11 @@ func _unhandled_input(event):
 				select_skill(skill_container.get_skill("4"))
 		# q (soul capture) and space (dash) skills are auto-casted
 		if event.scancode == KEY_Q:
-			if raycast.is_colliding() && raycast.get_collider() is Enemy:
-				print("Colliding with: " + str(raycast.get_collider()))
-				soul_capture_target = raycast.get_collider()
-				try_cast(skill_container.get_skill("Q"))
+			if raycast.is_colliding():
+				var col = raycast.get_collider()
+				if (col is Node && col.is_in_group("Enemy")):
+					soul_capture_target = raycast.get_collider()
+					try_cast(skill_container.get_skill("Q"))
 		if event.scancode == KEY_SPACE:
 			try_cast(skill_container.get_skill("Space"))
 

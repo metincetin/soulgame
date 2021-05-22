@@ -56,7 +56,7 @@ func set_random_texture():
 	$Sprite3D.texture = character_data.texture
 
 func _process(delta):
-	if freeze:	
+	if freeze:
 		$AnimationPlayer.play("Idle")
 		return
 	#._process(delta)

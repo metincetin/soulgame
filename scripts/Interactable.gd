@@ -1,4 +1,4 @@
-extends Area
+extends CollisionObject
 class_name Interactable
 
 # Declare member variables here. Examples:
@@ -6,6 +6,7 @@ class_name Interactable
 # var b = "text"
 
 export var interaction_name = ""
+export var interactable = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +20,7 @@ func deselect():
 	UIManager.get_interaction_text().text = ""
 	pass
 func interact(interactor):
-	print("HOO")
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

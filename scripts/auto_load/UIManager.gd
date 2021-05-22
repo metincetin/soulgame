@@ -17,7 +17,7 @@ func initialize_ui(r):
 	overhead = game_ui.get_node("Overhead")
 	windows = root.get_node("Windows")
 	tutorial = root.get_node("Tutorial")
-	subtitle = game.get_node("SubtitleLabel")
+	subtitle = game_ui.get_node("SubtitleLabel")
 	pass
 func _ready():
 	initialize_ui(get_node("/root/UIManager/MainUI"))
@@ -51,3 +51,7 @@ func show_subtitle(text, duration):
 	yield(get_tree().create_timer(duration),"timeout")
 	if text == subtitle.text:
 		subtitle.text = ""
+func show_subtitle_chain(chain):
+	for sb in chain:
+		show_subtitle(sb.text,sb.duration)
+		yield(get_tree().create_timer(sb.duration),"timeout")
