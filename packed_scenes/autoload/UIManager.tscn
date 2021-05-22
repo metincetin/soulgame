@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/ui/OverheadUIElementsController.gd" type="Script" id=1]
 [ext_resource path="res://packed_scenes/ui/SkillSlot.tscn" type="PackedScene" id=2]
@@ -9,24 +9,43 @@
 [ext_resource path="res://textures/ui/shop_ui.png" type="Texture" id=7]
 [ext_resource path="res://textures/ui/shop_description_panel.png" type="Texture" id=8]
 [ext_resource path="res://fonts/eryx.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://textures/ui/shop_skills_panel.png" type="Texture" id=10]
+[ext_resource path="res://scripts/ui/windows/ShopWindow.gd" type="Script" id=11]
+[ext_resource path="res://skills/fireball.tres" type="Resource" id=12]
+[ext_resource path="res://skills/shadow.tres" type="Resource" id=13]
+[ext_resource path="res://skills/laser.tres" type="Resource" id=14]
+[ext_resource path="res://skills/canister_shot.tres" type="Resource" id=15]
+[ext_resource path="res://skills/dark_armor.tres" type="Resource" id=16]
+[ext_resource path="res://skills/soul_shard.tres" type="Resource" id=17]
+[ext_resource path="res://skills/ground_break.tres" type="Resource" id=18]
+[ext_resource path="res://skills/passives/gold_hunter.tres" type="Resource" id=19]
+[ext_resource path="res://skills/passives/draining_souls.tres" type="Resource" id=20]
+[ext_resource path="res://skills/slide.tres" type="Resource" id=21]
 
-[sub_resource type="DynamicFont" id=2]
-size = 8
-extra_spacing_top = 11
+[sub_resource type="DynamicFont" id=1]
+size = 6
+extra_spacing_bottom = 2
 extra_spacing_space = 5
 font_data = ExtResource( 9 )
 
-[sub_resource type="Theme" id=3]
-default_font = SubResource( 2 )
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 117, 117 )
 
-[sub_resource type="StyleBoxLine" id=4]
-color = Color( 0.176471, 0.176471, 0.176471, 1 )
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxTexture" id=5]
+content_margin_left = 3.0
+content_margin_right = 3.0
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 498, 497 )
+
+[sub_resource type="StyleBoxTexture" id=6]
 content_margin_left = 12.0
 content_margin_right = 12.0
 content_margin_top = 12.0
@@ -35,18 +54,30 @@ texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 498, 184 )
 
 [node name="UIManager" type="Control"]
-theme = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = SubResource( 2 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainUI" type="CanvasLayer" parent="."]
-layer = 2
-follow_viewport_enable = true
+[node name="MainUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Game" type="CanvasLayer" parent="MainUI"]
-layer = 2
+[node name="Game" type="Control" parent="MainUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SubtitleLabel" type="Label" parent="MainUI/Game"]
 anchor_top = 1.0
@@ -76,7 +107,7 @@ margin_left = 114.0
 margin_top = -133.0
 margin_right = 180.0
 margin_bottom = -67.0
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 3 )
 
 [node name="Skills" type="Control" parent="MainUI/Game/SkillsContainer"]
 anchor_top = 1.0
@@ -114,7 +145,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 3 )
 
 [node name="2" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
 margin_left = 485.0
@@ -128,7 +159,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 3 )
 
 [node name="3" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
 margin_left = 535.0
@@ -142,7 +173,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 3 )
 
 [node name="4" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
 margin_left = 585.0
@@ -156,7 +187,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 3 )
 
 [node name="Interaction" type="Label" parent="MainUI/Game"]
 anchor_top = 0.5
@@ -170,9 +201,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Overhead" type="CanvasLayer" parent="MainUI/Game"]
-layer = 0
+[node name="Overhead" type="Control" parent="MainUI/Game"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Healthbars" type="Control" parent="MainUI/Game/Overhead"]
 anchor_right = 1.0
@@ -182,20 +215,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Windows" type="CanvasLayer" parent="MainUI"]
-layer = 3
-
-[node name="Control" type="Control" parent="MainUI/Windows"]
+[node name="Windows" type="Control" parent="MainUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -0.629974
-margin_bottom = -0.630005
-theme = SubResource( 3 )
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="MainUI/Windows/Control"]
+[node name="Shop" type="Control" parent="MainUI/Windows"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.629974
+margin_bottom = -0.630005
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="MainUI/Windows/Shop"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
@@ -205,7 +244,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="MainUI/Windows/Control/TextureRect"]
+[node name="GridContainer" type="GridContainer" parent="MainUI/Windows/Shop/TextureRect"]
 margin_left = 379.0
 margin_top = 115.0
 margin_right = 645.0
@@ -214,138 +253,181 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="MainUI/Windows/Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 380.0
-margin_top = 118.0
-margin_right = -379.0
-margin_bottom = -118.0
+[node name="PanelContainer" type="PanelContainer" parent="MainUI/Windows/Shop"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -133.0
+margin_top = -182.0
+margin_right = 134.0
+margin_bottom = 183.0
 custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/Windows/Control/PanelContainer"]
-margin_top = 0.5
-margin_right = 265.0
-margin_bottom = 363.5
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/Windows/Shop/PanelContainer"]
+margin_right = 267.0
+margin_bottom = 365.0
+custom_constants/separation = 0
 
-[node name="GridContainer" type="GridContainer" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer"]
-margin_right = 265.0
-margin_bottom = 261.0
+[node name="Skills" type="PanelContainer" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer"]
+margin_right = 267.0
+margin_bottom = 266.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.7
-columns = 4
-
-[node name="1" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_right = 63.0
-margin_bottom = 62.0
-
-[node name="2" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 67.0
-margin_right = 130.0
-margin_bottom = 62.0
-
-[node name="3" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 134.0
-margin_right = 197.0
-margin_bottom = 62.0
-
-[node name="4" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 201.0
-margin_right = 264.0
-margin_bottom = 62.0
-
-[node name="5" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_top = 66.0
-margin_right = 63.0
-margin_bottom = 128.0
-
-[node name="6" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 67.0
-margin_top = 66.0
-margin_right = 130.0
-margin_bottom = 128.0
-
-[node name="7" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 134.0
-margin_top = 66.0
-margin_right = 197.0
-margin_bottom = 128.0
-
-[node name="8" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 201.0
-margin_top = 66.0
-margin_right = 264.0
-margin_bottom = 128.0
-
-[node name="9" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_top = 132.0
-margin_right = 63.0
-margin_bottom = 194.0
-
-[node name="10" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 67.0
-margin_top = 132.0
-margin_right = 130.0
-margin_bottom = 194.0
-
-[node name="11" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 134.0
-margin_top = 132.0
-margin_right = 197.0
-margin_bottom = 194.0
-
-[node name="12" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 201.0
-margin_top = 132.0
-margin_right = 264.0
-margin_bottom = 194.0
-
-[node name="13" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_top = 198.0
-margin_right = 63.0
-margin_bottom = 260.0
-
-[node name="14" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 67.0
-margin_top = 198.0
-margin_right = 130.0
-margin_bottom = 260.0
-
-[node name="15" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 134.0
-margin_top = 198.0
-margin_right = 197.0
-margin_bottom = 260.0
-
-[node name="16" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/GridContainer" instance=ExtResource( 6 )]
-margin_left = 201.0
-margin_top = 198.0
-margin_right = 264.0
-margin_bottom = 260.0
-
-[node name="PanelContainer" type="PanelContainer" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer"]
-margin_top = 265.0
-margin_right = 265.0
-margin_bottom = 363.0
-size_flags_vertical = 3
 custom_styles/panel = SubResource( 5 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MainUI/Windows/Control/PanelContainer/VBoxContainer/PanelContainer"]
+[node name="GridContainer" type="GridContainer" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 264.0
+margin_bottom = 263.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.7
+custom_constants/vseparation = 3
+custom_constants/hseparation = 3
+columns = 4
+
+[node name="1" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_right = 63.0
+margin_bottom = 62.0
+skill = ExtResource( 12 )
+
+[node name="2" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 66.0
+margin_right = 129.0
+margin_bottom = 62.0
+skill = ExtResource( 15 )
+
+[node name="3" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 132.0
+margin_right = 195.0
+margin_bottom = 62.0
+skill = ExtResource( 13 )
+
+[node name="4" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 198.0
+margin_right = 261.0
+margin_bottom = 62.0
+skill = ExtResource( 14 )
+
+[node name="5" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_top = 65.0
+margin_right = 63.0
+margin_bottom = 127.0
+skill = ExtResource( 18 )
+
+[node name="6" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 66.0
+margin_top = 65.0
+margin_right = 129.0
+margin_bottom = 127.0
+skill = ExtResource( 17 )
+
+[node name="7" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 132.0
+margin_top = 65.0
+margin_right = 195.0
+margin_bottom = 127.0
+skill = ExtResource( 16 )
+
+[node name="8" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 198.0
+margin_top = 65.0
+margin_right = 261.0
+margin_bottom = 127.0
+
+[node name="9" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_top = 130.0
+margin_right = 63.0
+margin_bottom = 192.0
+skill = ExtResource( 21 )
+
+[node name="10" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 66.0
+margin_top = 130.0
+margin_right = 129.0
+margin_bottom = 192.0
+skill = ExtResource( 20 )
+
+[node name="11" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 132.0
+margin_top = 130.0
+margin_right = 195.0
+margin_bottom = 192.0
+skill = ExtResource( 19 )
+
+[node name="12" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 198.0
+margin_top = 130.0
+margin_right = 261.0
+margin_bottom = 192.0
+
+[node name="13" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_top = 195.0
+margin_right = 63.0
+margin_bottom = 257.0
+
+[node name="14" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 66.0
+margin_top = 195.0
+margin_right = 129.0
+margin_bottom = 257.0
+
+[node name="15" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 132.0
+margin_top = 195.0
+margin_right = 195.0
+margin_bottom = 257.0
+
+[node name="16" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills/GridContainer" instance=ExtResource( 6 )]
+margin_left = 198.0
+margin_top = 195.0
+margin_right = 261.0
+margin_bottom = 257.0
+
+[node name="Description" type="PanelContainer" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer"]
+margin_top = 266.0
+margin_right = 267.0
+margin_bottom = 365.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 6 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Description"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 253.0
-margin_bottom = 86.0
+margin_right = 255.0
+margin_bottom = 87.0
 bbcode_enabled = true
-bbcode_text = "[b]Skill Name[/b]
-skill description goes here"
-text = "Skill Name
-skill description goes here"
 
-[node name="Tutorial" type="CanvasLayer" parent="MainUI"]
-layer = 4
+[node name="Cost" type="Label" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Description"]
+margin_left = 12.0
+margin_top = 75.0
+margin_right = 255.0
+margin_bottom = 87.0
+size_flags_vertical = 8
+text = "146"
+align = 2
+valign = 2
+
+[node name="Duration" type="Label" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Description"]
+margin_left = 12.0
+margin_top = 75.0
+margin_right = 255.0
+margin_bottom = 87.0
+size_flags_vertical = 8
+text = "(Active) 10s"
+valign = 2
+
+[node name="Tutorial" type="Control" parent="MainUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="KeyTutorial" type="Control" parent="MainUI/Tutorial"]
 visible = false

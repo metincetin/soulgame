@@ -11,11 +11,12 @@ onready var camera = get_node("../Camera")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	pass # Replace with function body.
 
 func _input(event):
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		handle_rotation(event.relative)
 
 	

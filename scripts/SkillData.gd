@@ -7,9 +7,12 @@ class_name SkillData
 
 export var skill_name = ""
 export var description = ""
+export var effects_description = ""
 export var icon:Texture
 export var skill_action: Resource
 export var skill_effects = []
+
+export var cost = 0
 
 enum SkillType {ACTIVE = 0, PASSIVE = 1} 
 

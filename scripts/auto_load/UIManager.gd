@@ -8,11 +8,13 @@ extends Node
 var root
 var game_ui
 var overhead
+var windows
 
 func initialize_ui(r):
 	root = r
 	game_ui = root.get_node("Game")
 	overhead = game_ui.get_node("Overhead")
+	windows = root.get_node("Windows")
 	pass
 func _ready():
 	initialize_ui(get_node("/root/UIManager/MainUI"))
@@ -28,3 +30,7 @@ func unregister_enemy_healthbar(enemy:Character):
 	overhead.unregister_enemy_healthbar(enemy)
 func get_interaction_text():
 	return game_ui.get_node("Interaction")
+
+func get_windows(windowName):
+	return windows.get_node(windowName)
+	pass
