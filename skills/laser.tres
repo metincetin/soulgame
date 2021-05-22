@@ -56,6 +56,6 @@ effects_description = "200% damage"
 icon = ExtResource( 5 )
 skill_action = SubResource( 5 )
 skill_effects = [ SubResource( 6 ) ]
-cost = 0
+cost = 230
 skill_type = 0
 cast_rate = 30.0

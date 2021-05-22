@@ -20,6 +20,6 @@ effects_description = ""
 icon = ExtResource( 3 )
 skill_action = SubResource( 1 )
 skill_effects = [  ]
-cost = 0
+cost = 150
 skill_type = 1
 cast_rate = 1.0

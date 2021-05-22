@@ -20,7 +20,7 @@
 [ext_resource path="res://skills/ground_break.tres" type="Resource" id=18]
 [ext_resource path="res://skills/passives/gold_hunter.tres" type="Resource" id=19]
 [ext_resource path="res://skills/passives/draining_souls.tres" type="Resource" id=20]
-[ext_resource path="res://skills/slide.tres" type="Resource" id=21]
+[ext_resource path="res://skills/passives/slide.tres" type="Resource" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 6
