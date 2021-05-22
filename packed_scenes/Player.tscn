@@ -312,6 +312,7 @@ hotkey = "Space"
 skill_data = ExtResource( 8 )
 
 [node name="Hand" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="Control" type="Control" parent="Hand"]
 anchor_right = 1.0

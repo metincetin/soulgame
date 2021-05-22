@@ -43,7 +43,7 @@ func _ready():
 	UIManager.get_skill_slot("2").skill = skill_container.get_skill("2")
 	UIManager.get_skill_slot("3").skill = skill_container.get_skill("3")
 	UIManager.get_skill_slot("4").skill = skill_container.get_skill("4")
-	UIManager.get_windows("Shop").show()
+	
 	pass # Replace with function body.
 
 func _unhandled_input(event):
