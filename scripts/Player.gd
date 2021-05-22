@@ -77,7 +77,7 @@ func _unhandled_input(event):
 		
 	if event is InputEventKey:
 		if event.is_action_pressed("interact"):
-			if target_interactable != null:
+			if target_interactable != null && target_interactable.interactable:
 				target_interactable.interact(self)
 		match event.scancode:
 			KEY_1:
@@ -131,7 +131,7 @@ func die():
 
 func _process(delta):
 	if interaction_raycast.is_colliding():
-		if interaction_raycast.get_collider() is Interactable:
+		if interaction_raycast.get_collider() is Interactable && interaction_raycast.get_collider().interactable:
 			if target_interactable!= null && target_interactable != interaction_raycast.get_collider():
 				target_interactable.deselect()
 			target_interactable = interaction_raycast.get_collider()

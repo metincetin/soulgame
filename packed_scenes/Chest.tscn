@@ -42,6 +42,7 @@ transform = Transform( 35, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0 )
 [node name="RootNode" type="Spatial" parent="."]
 
 [node name="Chest" type="Spatial" parent="RootNode"]
+transform = Transform( 35, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0 )
 
 [node name="chest_top" type="MeshInstance" parent="RootNode/Chest"]
 mesh = SubResource( 1 )

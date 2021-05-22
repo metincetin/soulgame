@@ -17,6 +17,10 @@ func _on_visibility_changed():
 		mouse_filter = Control.MOUSE_FILTER_STOP
 	else:
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
+func _input(event):
+	if event.is_action_pressed("interact") && visible:
+		hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
