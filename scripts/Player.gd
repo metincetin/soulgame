@@ -23,9 +23,27 @@ var interaction_raycast:RayCast
 export var magic_spawn_point_path:NodePath
 var magic_spawn_point:Position3D
 
+var soul_capture_target:Enemy
+
+var _weapon
+var weapon = 0 setget set_weapon, get_weapon
+
+var weapon_data = [
+	{
+		"name":"axe",
+		"texture": preload("res://textures/axe/0_1.png")
+	},
+	{
+		"name": "sword",
+		"texture": preload("res://textures/sword/0_1.png")
+	}
+]
+
+
 var target_interactable
 
 signal selected_skill_changed
+signal damage_applied
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,7 +67,8 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.is_pressed():
-			get_node("Hand/RightAnimation")["parameters/playback"].travel("Slash1")
+			print("attacking")
+			get_node("Hand/RightAnimation")["parameters/playback"].travel(get_weapon().name + "_slash")
 		if event.button_index == BUTTON_RIGHT && can_cast:
 			if event.is_pressed() && selected_skill!=null && selected_skill.can_cast(self):
 				get_node("Hand/LeftAnimation")["parameters/playback"].travel("magic")
@@ -71,7 +90,10 @@ func _unhandled_input(event):
 				select_skill(skill_container.get_skill("4"))
 		# q (soul capture) and space (dash) skills are auto-casted
 		if event.scancode == KEY_Q:
-			try_cast(skill_container.get_skill("Q"))
+			if raycast.is_colliding() && raycast.get_collider() is Enemy:
+				print("Colliding with: " + str(raycast.get_collider()))
+				soul_capture_target = raycast.get_collider()
+				try_cast(skill_container.get_skill("Q"))
 		if event.scancode == KEY_SPACE:
 			try_cast(skill_container.get_skill("Space"))
 
@@ -97,6 +119,7 @@ func try_deal_primary_damage():
 		if col.has_method("damage"):
 			col.damage(get_total_damage())
 			$EffectHandler.create_blood_particle(raycast.get_collision_point())
+			emit_signal("damage_applied", col, get_total_damage())
 		else:
 			$EffectHandler.create_wall_slash_particle(raycast.get_collision_point())
 	pass
@@ -126,3 +149,18 @@ func set_magic_autoreturn(val):
 
 func delete_skill_object(path):
 	get_node(path).queue_free()
+
+func get_weapon():	return _weapon
+func set_weapon(val):
+	if val == -1:
+		$Hand/Control/Left.visible = false
+		$Hand/Control/Right.visible = false
+		return
+	$Hand/Control/Left.visible = true
+	$Hand/Control/Right.visible = true
+	var wp = weapon_data[val]
+	$Hand/Control/Right.texture = wp.texture
+	_weapon = wp
+	
+	
+	get_node("Hand/RightAnimation")["parameters/playback"].start(get_weapon().name + "_idle")

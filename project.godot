@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/skill_actions/DelayedAction.gd"
 }, {
+"base": "Character",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scripts/Enemy.gd"
+}, {
 "base": "Resource",
 "class": "FunctionCallerSkillAction",
 "language": "GDScript",
@@ -104,6 +109,7 @@ _global_script_class_icons={
 "CameraShakeEffect": "",
 "Character": "",
 "DelayedAction": "",
+"Enemy": "",
 "FunctionCallerSkillAction": "",
 "Interactable": "",
 "MaterialChangeEffect": "",

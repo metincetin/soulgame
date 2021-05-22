@@ -41,6 +41,10 @@ func _on_skill_mouse_exited(skill_slot):
 func _on_skill_pressed(skill_slot):
 	pass
 
+func hide():
+	.hide()
+	set_process_input(false)
 func show():
 	.show()
+	set_process_input(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

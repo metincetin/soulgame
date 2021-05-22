@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
@@ -44,6 +44,12 @@ height = 1.7
 
 [sub_resource type="ShaderMaterial" id=2]
 
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "axe_idle"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "axe_slash1"
+
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "sword_idle"
 
@@ -56,13 +62,23 @@ animation = "sword_slash1"
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=7]
-states/Idle/node = SubResource( 3 )
-states/Idle/position = Vector2( 235, 53 )
-states/Slash1/node = SubResource( 4 )
-states/Slash1/position = Vector2( 467, 53 )
-transitions = [ "Idle", "Slash1", SubResource( 5 ), "Slash1", "Idle", SubResource( 6 ) ]
-start_node = "Idle"
+states/axe_idle/node = SubResource( 25 )
+states/axe_idle/position = Vector2( 325, 128 )
+states/axe_slash/node = SubResource( 26 )
+states/axe_slash/position = Vector2( 641, 126 )
+states/sword_idle/node = SubResource( 3 )
+states/sword_idle/position = Vector2( 325, 58 )
+states/sword_slash/node = SubResource( 4 )
+states/sword_slash/position = Vector2( 641, 58 )
+transitions = [ "sword_idle", "sword_slash", SubResource( 5 ), "sword_slash", "sword_idle", SubResource( 6 ), "axe_idle", "axe_slash", SubResource( 27 ), "axe_slash", "axe_idle", SubResource( 28 ) ]
+graph_offset = Vector2( -105, -13 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 

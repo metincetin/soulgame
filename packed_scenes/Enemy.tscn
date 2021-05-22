@@ -82,7 +82,6 @@ shaded = true
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 2
-frame = 5
 
 [node name="HealthbarPosition" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81342, 0 )

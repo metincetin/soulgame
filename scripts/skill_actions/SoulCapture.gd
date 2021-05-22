@@ -3,4 +3,9 @@ class_name SoulCaptureSkillAction
 
 
 func cast(caster):
-	print("Capture soul")
+	var target = caster.soul_capture_target
+	print(target)
+	
+	caster.weapon = target.character_data.weapon
+	
+	target.die()

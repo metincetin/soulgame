@@ -5,6 +5,7 @@ class_name Character
 # var a = 2
 # var b = "text"
 
+var freeze = false
 export var max_health:float = 100
 var health:float setget set_health, get_health
 var _health:float
@@ -30,6 +31,7 @@ signal health_changed
 
 
 var linear_velocity:Vector3
+var movement_direction:Vector3
 
 var external_forces:Vector3
 
@@ -58,15 +60,17 @@ func dash():
 	pass
 
 func move(direction):
-	
-	
+	movement_direction = direction
+	pass
+
+func _physics_process(delta):
+	linear_velocity = move_and_slide(movement_direction * (speed * speed_multiplier) + Vector3.UP * vertical_velocity + external_forces, Vector3.UP)
 	if !is_on_floor():
 		vertical_velocity += -9.81 * get_physics_process_delta_time()
 	else:
 		vertical_velocity = 0
-	linear_velocity = move_and_slide(direction * (speed * speed_multiplier) + Vector3.UP * vertical_velocity + external_forces, Vector3.UP)
+	movement_direction = Vector3.ZERO
 	external_forces = lerp(external_forces, Vector3.ZERO, 8 * get_physics_process_delta_time())
-pass
 
 func damage(val, use_defence = true):
 	if use_defence:
