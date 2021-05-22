@@ -137,7 +137,8 @@ func _process(delta):
 			target_interactable = interaction_raycast.get_collider()
 			target_interactable.select();
 			return
-	if target_interactable!=null:	target_interactable.deselect()
+	if is_instance_valid(target_interactable):
+		target_interactable.deselect()
 	target_interactable = null
 
 func get_camera() -> Camera:
@@ -165,3 +166,6 @@ func set_weapon(val):
 	
 	
 	get_node("Hand/RightAnimation")["parameters/playback"].start(get_weapon().name + "_idle")
+
+func reset():
+	if target_interactable !=null:	target_interactable.deselect()

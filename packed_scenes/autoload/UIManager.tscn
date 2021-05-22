@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/ui/OverheadUIElementsController.gd" type="Script" id=1]
 [ext_resource path="res://packed_scenes/ui/SkillSlot.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://skills/passives/gold_hunter.tres" type="Resource" id=19]
 [ext_resource path="res://skills/passives/draining_souls.tres" type="Resource" id=20]
 [ext_resource path="res://skills/passives/slide.tres" type="Resource" id=21]
+[ext_resource path="res://scripts/ui/windows/TabletRead.gd" type="Script" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 6
@@ -433,6 +434,35 @@ margin_bottom = 87.0
 size_flags_vertical = 8
 text = "(Active) 10s"
 valign = 2
+
+[node name="TabletRead" type="CenterContainer" parent="MainUI/Windows"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="MainUI/Windows/TabletRead"]
+margin_left = 352.0
+margin_top = 150.0
+margin_right = 672.0
+margin_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 320, 300 )
+
+[node name="Label" type="Label" parent="MainUI/Windows/TabletRead/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 313.0
+margin_bottom = 293.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Something something something something ges here"
+autowrap = true
 
 [node name="Tutorial" type="Control" parent="MainUI"]
 anchor_right = 1.0

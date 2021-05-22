@@ -5,7 +5,6 @@ extends Node
 # var a = 2
 # var b = "text"
 
-
 var enemies = []
 var player
 

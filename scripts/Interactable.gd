@@ -19,6 +19,8 @@ func select():
 func deselect():
 	UIManager.get_interaction_text().text = ""
 	pass
+
+
 func interact(interactor):
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.

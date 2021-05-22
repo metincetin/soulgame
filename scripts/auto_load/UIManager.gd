@@ -40,8 +40,8 @@ func unregister_enemy_headtitle(enemy:Character):
 func get_interaction_text():
 	return game_ui.get_node("Interaction")
 	
-func get_windows(tutorial_name):
-	return windows.get_node(tutorial_name)
+func get_window(window_name):
+	return windows.get_node(window_name)
 	pass
 func get_tutorial(tutorial_name):
 	return tutorial.get_node(tutorial_name)

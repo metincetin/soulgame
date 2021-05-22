@@ -19,4 +19,5 @@ func _on_room_completed():
 
 func interact(caster):
 	.interact(caster)
+	GameInstance.next_room()
 	print("Goes Next room")
