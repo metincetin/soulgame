@@ -65,6 +65,9 @@ tracks/1/keys = {
 [node name="Chest" type="StaticBody"]
 transform = Transform( 35, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0 )
 script = ExtResource( 1 )
+interaction_name = "Open"
+gold_min = 70
+gold_max = 110
 
 [node name="RootNode" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.224209, 0.740106 )
@@ -73,7 +76,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.224209, 0.740106 )
 transform = Transform( 35, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0 )
 
 [node name="chest_top" type="MeshInstance" parent="RootNode/Chest"]
-transform = Transform( 1, 0, 0, 0, -0.0323529, -0.999476, 0, 0.999476, -0.0323529, 0, -2.79397e-09, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.79397e-09, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 

@@ -34,7 +34,7 @@ func _on_skill_mouse_entered(skill_slot):
 	else:
 		cost_text.text = str(skill_slot.skill.cost)
 	
-	description_text.bbcode_text = "[b]" + skill_slot.skill.skill_name+"[/b]\n" + skill_slot.skill.description + "\n" + skill_slot.skill.effects_description 
+	description_text.bbcode_text = "[b]" + skill_slot.skill.skill_name+"[/b]\n" + skill_slot.skill.effects_description 
 	pass
 func _on_skill_mouse_exited(skill_slot):
 	description_text.text = ""

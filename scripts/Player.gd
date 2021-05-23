@@ -8,7 +8,7 @@ extends Character
 var skill_container
 var selected_skill
 
-var rotting_speed = 1
+var rotting_speed = 3
 var rotting_speed_multiplier = 1
 
 var gold_income_multiplier = 1
@@ -61,6 +61,8 @@ func _ready():
 	UIManager.get_skill_slot("2").skill = skill_container.get_skill("2")
 	UIManager.get_skill_slot("3").skill = skill_container.get_skill("3")
 	UIManager.get_skill_slot("4").skill = skill_container.get_skill("4")
+	
+	UIManager.register_player_health(self)
 	
 	pass # Replace with function body.
 
@@ -130,6 +132,7 @@ func die():
 	pass
 
 func _process(delta):
+	apply_rot_damage(delta)
 	if interaction_raycast.is_colliding():
 		if interaction_raycast.get_collider() is Interactable && interaction_raycast.get_collider().interactable:
 			if target_interactable!= null && target_interactable != interaction_raycast.get_collider():
@@ -167,11 +170,21 @@ func set_weapon(val):
 	
 	get_node("Hand/RightAnimation")["parameters/playback"].start(get_weapon().name + "_idle")
 
+func apply_rot_damage(delta):
+	if RoomInstance.enemies.size() == 0:	return
+	damage(rotting_speed * rotting_speed_multiplier * delta)
+	
+	pass
+
 func has_skill(skill):
 	return skill_container.has_skill(skill)
 func add_skill(skill):
 	if skill.skill_type == 1:
 		skill_container.add_new(skill)
+	else:
+		var empty_slot = get_empty_skill_slot()
+		empty_slot.set_skill(skill)
+		UIManager.get_skill_slot(empty_slot.hotkey).skill = empty_slot
 func can_add_skill(skill)->bool:
 	if skill.skill_type == 1:	return true
 	if get_empty_skill_slot() == null:	return false
@@ -179,8 +192,11 @@ func can_add_skill(skill)->bool:
 
 func get_empty_skill_slot():
 	for i in 4:
-		var skill = skill_container.get_skill(str(i + 1))
-		if skill == null:	return skill
+		var slot = skill_container.get_skill(str(i + 1))
+		print(str(i + 1))
+		print(slot)
+		if slot == null:	return
+		if slot.skill_data == null:	return slot
 	return null
 func reset():
 	if target_interactable !=null:	target_interactable.deselect()

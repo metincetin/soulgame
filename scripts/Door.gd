@@ -14,6 +14,7 @@ func _exit_tree():
 	RoomInstance.disconnect("room_completed", self, "_on_room_completed")
 	
 func _on_room_completed():
+	print("Room completed?")
 	interactable = true
 	$AnimationPlayer.play("open")
 

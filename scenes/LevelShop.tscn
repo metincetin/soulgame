@@ -95,7 +95,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00213359, -0.0224326, -0.124
 script = ExtResource( 4 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.22521, -1.83102, 1.51149 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262068, -1.83102, 3.28178 )
 script = ExtResource( 7 )
 interaction_name = "Shop"
 texts = [ "D-do you have g-gold?", "W-welcome", "I g-got something for you", "H-hello there" ]
@@ -132,4 +132,4 @@ complete_on_enemy_cleared = false
 room_start_position_node = NodePath("../StartPosition")
 
 [node name="StartPosition" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70334, 0, 7.19904 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258715, -1.64624, 8.58191 )

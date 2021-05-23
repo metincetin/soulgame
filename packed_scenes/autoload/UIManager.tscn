@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scripts/ui/OverheadUIElementsController.gd" type="Script" id=1]
 [ext_resource path="res://packed_scenes/ui/SkillSlot.tscn" type="PackedScene" id=2]
@@ -20,17 +20,42 @@
 [ext_resource path="res://skills/ground_break.tres" type="Resource" id=18]
 [ext_resource path="res://skills/passives/gold_hunter.tres" type="Resource" id=19]
 [ext_resource path="res://skills/passives/draining_souls.tres" type="Resource" id=20]
-[ext_resource path="res://skills/passives/slide.tres" type="Resource" id=21]
+[ext_resource path="res://skills/slide.tres" type="Resource" id=21]
 [ext_resource path="res://scripts/ui/windows/TabletRead.gd" type="Script" id=22]
 [ext_resource path="res://textures/ui/tablet_ui.png" type="Texture" id=23]
+[ext_resource path="res://textures/x_ui.png" type="Texture" id=24]
+[ext_resource path="res://textures/ui/health_back.png" type="Texture" id=25]
+[ext_resource path="res://textures/ui/health_front.png" type="Texture" id=26]
+[ext_resource path="res://scripts/ui/PlayerHealthbar.gd" type="Script" id=27]
+[ext_resource path="res://fonts/pixelplay.ttf" type="DynamicFontData" id=28]
+[ext_resource path="res://textures/ui/ui_coin.png" type="Texture" id=29]
+[ext_resource path="res://scripts/ui/Gold.gd" type="Script" id=30]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 117, 117 )
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
 
-[sub_resource type="StyleBoxTexture" id=3]
+uniform float fill_rate = 1.0;
+
+void fragment(){
+	COLOR = texture(TEXTURE,UV);
+	COLOR.a = step(1. - UV.y, fill_rate) * COLOR.a;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/fill_rate = 1.049
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 28 )
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxTexture" id=6]
 content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 3.0
@@ -38,7 +63,7 @@ content_margin_bottom = 3.0
 texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 498, 497 )
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=7]
 content_margin_left = 12.0
 content_margin_right = 12.0
 content_margin_top = 12.0
@@ -46,7 +71,7 @@ content_margin_bottom = 12.0
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 498, 184 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=8]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 8.0
@@ -104,12 +129,14 @@ __meta__ = {
 }
 
 [node name="QSkillSlot" parent="MainUI/Game/SkillsContainer" instance=ExtResource( 2 )]
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 114.0
-margin_top = -133.0
-margin_right = 180.0
-margin_bottom = -67.0
+margin_left = -236.859
+margin_top = -155.434
+margin_right = -170.859
+margin_bottom = -89.4343
 custom_styles/normal = SubResource( 1 )
 
 [node name="Skills" type="Control" parent="MainUI/Game/SkillsContainer"]
@@ -227,11 +254,78 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="InfoText" type="Label" parent="MainUI/Game"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -65.306
+margin_top = 74.5661
+margin_right = 73.694
+margin_bottom = 106.566
+grow_horizontal = 2
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerHealth" type="Control" parent="MainUI/Game"]
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 60.0
+margin_bottom = -32.0
+script = ExtResource( 27 )
+
+[node name="Back" type="TextureRect" parent="MainUI/Game/PlayerHealth"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 25 )
+expand = true
+
+[node name="Front" type="TextureRect" parent="MainUI/Game/PlayerHealth"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/Game"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -103.0
+margin_top = 11.0
+margin_right = -16.0
+margin_bottom = 52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainUI/Game/HBoxContainer"]
+margin_top = 4.0
+margin_right = 41.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "142"
+align = 2
+valign = 1
+script = ExtResource( 30 )
+
+[node name="TextureRect" type="TextureRect" parent="MainUI/Game/HBoxContainer"]
+margin_left = 45.0
+margin_right = 87.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+texture = ExtResource( 29 )
+expand = true
+stretch_mode = 6
+
 [node name="Windows" type="Control" parent="MainUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -275,7 +369,7 @@ margin_left = -133.0
 margin_top = -182.0
 margin_right = 134.0
 margin_bottom = 183.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -290,7 +384,7 @@ margin_right = 267.0
 margin_bottom = 266.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.7
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 6 )
 
 [node name="GridContainer" type="GridContainer" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills"]
 margin_left = 3.0
@@ -406,7 +500,7 @@ margin_top = 266.0
 margin_right = 267.0
 margin_bottom = 365.0
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 7 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Description"]
 margin_left = 12.0
@@ -417,7 +511,7 @@ bbcode_enabled = true
 
 [node name="Cost" type="Label" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Description"]
 margin_left = 12.0
-margin_top = 75.0
+margin_top = 68.0
 margin_right = 255.0
 margin_bottom = 87.0
 size_flags_vertical = 8
@@ -427,7 +521,7 @@ valign = 2
 
 [node name="Duration" type="Label" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Description"]
 margin_left = 12.0
-margin_top = 75.0
+margin_top = 68.0
 margin_right = 255.0
 margin_bottom = 87.0
 size_flags_vertical = 8
@@ -442,11 +536,13 @@ mouse_filter = 2
 [node name="Button" type="Button" parent="MainUI/Windows/Shop/PanelContainer/Control"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -24.0
+margin_left = -12.0
 margin_top = -12.0
 margin_right = 12.0
-margin_bottom = 24.0
-text = " x"
+margin_bottom = 12.0
+icon = ExtResource( 24 )
+clip_text = true
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -469,7 +565,7 @@ margin_bottom = 454.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 255, 309 )
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 8 )
 
 [node name="Label" type="Label" parent="MainUI/Windows/TabletRead/PanelContainer"]
 margin_left = 8.0
@@ -488,6 +584,7 @@ margin_left = 0.297241
 margin_right = 0.297241
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -547,5 +644,7 @@ margin_right = 240.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 text = "Cast Soul Capture"
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="pressed" from="MainUI/Windows/Shop/PanelContainer/Control/Button" to="MainUI/Windows/Shop" method="hide"]

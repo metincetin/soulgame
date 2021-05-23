@@ -12,8 +12,11 @@ signal enemy_decreased
 signal enemies_cleared
 signal room_completed
 
+var is_completed = false
+
 func initialize_room():
 	enemies.clear()
+	is_completed = false
 
 func register_enemy(enemy):
 	enemies.append(enemy)
@@ -32,6 +35,7 @@ func get_room_settings():
 	return get_node("/root/Scene/RoomSettings")
 
 func complete_room():
+	is_completed = true
 	emit_signal("room_completed")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

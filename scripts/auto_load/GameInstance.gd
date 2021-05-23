@@ -5,7 +5,11 @@ extends Node
 # var a = 2
 # var b = "text"
 
-var gold = 0
+var _gold = 0
+var gold setget set_gold, get_gold
+
+signal gold_changed
+
 var skills = []
 var room_index = 0
 
@@ -49,6 +53,14 @@ func load_save():
 	
 	pass
 	
+func has_save():
+	ResourceLoader.exists("user://save.ss")
 func _apply_save_data(data):
 	gold = data.gold
 	room_index = data.room_index
+
+func set_gold(value):
+	_gold = value
+	emit_signal("gold_changed", _gold)
+func get_gold():
+	return _gold

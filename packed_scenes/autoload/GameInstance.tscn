@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/auto_load/GameInstance.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Level1.tscn" type="PackedScene" id=2]
@@ -6,7 +6,14 @@
 [ext_resource path="res://scenes/Level4.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Level3.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/LevelShop.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sfx/388340__phlair__dungeon-ambiance.wav" type="AudioStream" id=7]
 
 [node name="GameInstance" type="Node"]
 script = ExtResource( 1 )
 rooms = [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ) ]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+pause_mode = 2
+stream = ExtResource( 7 )
+attenuation_model = 3
+autoplay = true

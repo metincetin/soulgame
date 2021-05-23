@@ -17,7 +17,7 @@ func set_skill(value):
 		_skill.disconnect("casted",self, "_on_skill_casted")
 		_skill.disconnect("selection_changed", self, "_on_skill_selection_changed")
 	_skill = value
-	if (_skill != null):
+	if (_skill != null && _skill.skill_data != null):
 		$SkillIcon.texture = value.skill_data.icon
 		_skill.connect("casted", self, "_on_skill_casted")
 		_skill.connect("selection_changed", self, "_on_skill_selection_changed")

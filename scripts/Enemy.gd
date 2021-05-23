@@ -90,6 +90,9 @@ func die():
 	UIManager.unregister_enemy_healthbar(self)
 	UIManager.unregister_enemy_headtitle(self)
 	RoomInstance.unregister_enemy(self)
+	
+	GameInstance.gold += int(rand_range(7,13))
+	
 	queue_free()
 	
 	

@@ -11,6 +11,9 @@ var overhead
 var windows
 var tutorial
 var subtitle
+var info_text:Label
+var tween:Tween
+
 func initialize_ui(r):
 	root = r
 	game_ui = root.get_node("Game")
@@ -18,6 +21,9 @@ func initialize_ui(r):
 	windows = root.get_node("Windows")
 	tutorial = root.get_node("Tutorial")
 	subtitle = game_ui.get_node("SubtitleLabel")
+	info_text = game_ui.get_node("InfoText")
+	tween = $Tween
+
 	pass
 func _ready():
 	initialize_ui(get_node("/root/UIManager/MainUI"))
@@ -55,3 +61,16 @@ func show_subtitle_chain(chain):
 	for sb in chain:
 		show_subtitle(sb.text,sb.duration)
 		yield(get_tree().create_timer(sb.duration),"timeout")
+
+func show_info_text(text):
+	info_text.text = text
+	tween.interpolate_property(info_text, "percent_visible", 0, 1, .4, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.start()
+	yield(get_tree().create_timer(4), "timeout")
+
+	tween.interpolate_property(info_text, "percent_visible", 1, 0, .4, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.start()
+	pass
+
+func register_player_health(player):
+	$MainUI/Game/PlayerHealth.player = player

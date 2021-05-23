@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
@@ -8,11 +8,8 @@
 [ext_resource path="res://scripts/Skill.gd" type="Script" id=6]
 [ext_resource path="res://scripts/SkillContainer.gd" type="Script" id=7]
 [ext_resource path="res://skills/dash.tres" type="Resource" id=8]
-[ext_resource path="res://skills/fireball.tres" type="Resource" id=9]
+[ext_resource path="res://sfx/59992__qubodup__swosh-sword-swing.mp3" type="AudioStream" id=9]
 [ext_resource path="res://skills/soul_capture.tres" type="Resource" id=10]
-[ext_resource path="res://skills/laser.tres" type="Resource" id=11]
-[ext_resource path="res://skills/canister_shot.tres" type="Resource" id=12]
-[ext_resource path="res://skills/shadow.tres" type="Resource" id=13]
 [ext_resource path="res://textures/sword/7_1.png" type="Texture" id=14]
 [ext_resource path="res://textures/sword/2_1.png" type="Texture" id=15]
 [ext_resource path="res://textures/sword/6_1.png" type="Texture" id=16]
@@ -124,6 +121,20 @@ tracks/1/keys = {
 "method": "try_deal_primary_damage"
 } ]
 }
+tracks/2/type = "audio"
+tracks/2/path = NodePath("../../AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.3 )
+}
 
 [sub_resource type="Animation" id=15]
 tracks/0/type = "value"
@@ -167,6 +178,20 @@ tracks/1/keys = {
 "args": [  ],
 "method": "try_deal_primary_damage"
 } ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("../../AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.33 )
 }
 
 [sub_resource type="AnimationNodeAnimation" id=17]
@@ -265,6 +290,7 @@ radius = 2.0
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.18383, -2.72922, -7.48857 )
 script = ExtResource( 1 )
+max_health = 300.0
 base_damage = 20.0
 speed = 6.0
 dash_force = 25.0
@@ -302,30 +328,26 @@ script = ExtResource( 6 )
 hotkey = "Q"
 skill_data = ExtResource( 10 )
 
-[node name="Skill1" type="Node" parent="Skills"]
-script = ExtResource( 6 )
-hotkey = "1"
-skill_data = ExtResource( 9 )
-
-[node name="Skill2" type="Node" parent="Skills"]
-script = ExtResource( 6 )
-hotkey = "2"
-skill_data = ExtResource( 12 )
-
-[node name="Skill3" type="Node" parent="Skills"]
-script = ExtResource( 6 )
-hotkey = "3"
-skill_data = ExtResource( 13 )
-
-[node name="Skill4" type="Node" parent="Skills"]
-script = ExtResource( 6 )
-hotkey = "4"
-skill_data = ExtResource( 11 )
-
 [node name="SkillSpace" type="Node" parent="Skills"]
 script = ExtResource( 6 )
 hotkey = "Space"
 skill_data = ExtResource( 8 )
+
+[node name="1" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "1"
+
+[node name="2" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "2"
+
+[node name="3" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "3"
+
+[node name="4" type="Node" parent="Skills"]
+script = ExtResource( 6 )
+hotkey = "4"
 
 [node name="Hand" type="CanvasLayer" parent="."]
 layer = -1
@@ -395,3 +417,7 @@ shape = SubResource( 28 )
 script = ExtResource( 38 )
 slash_particle = ExtResource( 4 )
 blood_particle = ExtResource( 5 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 9 )
+attenuation_model = 3

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Door.gd" type="Script" id=1]
 [ext_resource path="res://materials/column_mat.material" type="Material" id=2]
+[ext_resource path="res://sfx/474178__dwoboyle__door-stone-large-001.wav" type="AudioStream" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.0416336, 0.1, 0.00878079 )
@@ -24,6 +25,7 @@ surfaces/0 = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "open"
+length = 4.0
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Door")
 tracks/0/interp = 1
@@ -55,20 +57,37 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [node name="Door" type="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142857, 0.191399, -0.922185 )
 script = ExtResource( 1 )
 interaction_name = "Continue"
-interactable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
 [node name="Door" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.151, -0.186, 0.919 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143, -0.186, 0.928 )
 mesh = SubResource( 2 )
 material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/open = SubResource( 3 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_size = 3.0
