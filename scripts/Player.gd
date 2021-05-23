@@ -129,6 +129,9 @@ func try_deal_primary_damage():
 	
 	
 func die():
+	set_process_input(false)
+	set_process_unhandled_input(false)
+	UIManager.restart_game()
 	pass
 
 func _process(delta):
@@ -200,3 +203,9 @@ func get_empty_skill_slot():
 	return null
 func reset():
 	if target_interactable !=null:	target_interactable.deselect()
+
+func soul_capture(target):
+	
+	$Tween.interpolate_property(self, "global_transform:origin", global_transform.origin, target.global_transform.origin, .2)
+	$Tween.start()
+	pass

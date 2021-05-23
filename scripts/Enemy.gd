@@ -8,6 +8,8 @@ class_name Enemy
 var follow_distance = 8
 var attack_distance = 2
 
+var damaged = false
+
 var headtitle
 
 var character_datas = [
@@ -61,7 +63,7 @@ func _process(delta):
 		return
 	#._process(delta)
 	var dist = RoomInstance.player.global_transform.origin.distance_to(global_transform.origin)
-	if dist < follow_distance:
+	if dist < follow_distance || damaged:
 		follow_player()
 		if dist < attack_distance:
 			if $AnimationPlayer.current_animation != "Attack":
@@ -101,6 +103,7 @@ func damage(val, use_defence = true):
 	$Sprite3D.modulate = Color.red
 	yield(get_tree().create_timer(.2), "timeout")
 	$Sprite3D.modulate = Color.white
+	damaged = true
 
 
 func show_headtitle(title:String, duration:float):

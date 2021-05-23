@@ -134,8 +134,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Soulgame"
-run/main_scene="res://scenes/Level1.tscn"
+config/name="Disinterment"
+run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -143,6 +143,12 @@ config/icon="res://icon.png"
 UIManager="*res://packed_scenes/autoload/UIManager.tscn"
 RoomInstance="*res://scripts/auto_load/RoomInstance.gd"
 GameInstance="*res://packed_scenes/autoload/GameInstance.tscn"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/fullscreen=true
 
 [editor_plugins]
 

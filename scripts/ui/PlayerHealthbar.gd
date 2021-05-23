@@ -15,6 +15,6 @@ func _ready():
 	pass
 
 func _process(delta):
-	if player == null:	return
+	if !is_instance_valid(player):	return
 	bar_material.set_shader_param("fill_rate", player.health / player.max_health)
 	

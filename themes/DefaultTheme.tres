@@ -1,12 +1,11 @@
 [gd_resource type="Theme" load_steps=8 format=2]
 
 [ext_resource path="res://fonts/pixelplay.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://textures/ui/button_ui.png" type="Texture" id=2]
-[ext_resource path="res://textures/ui/button2_ui.png" type="Texture" id=3]
+[ext_resource path="res://textures/ui/button2_ui.png" type="Texture" id=2]
+[ext_resource path="res://textures/ui/button_ui.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxTexture" id=1]
 content_margin_bottom = 7.0
-texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 351, 108 )
 margin_left = 12.0
 margin_right = 12.0
@@ -15,22 +14,22 @@ modulate_color = Color( 0.435294, 0.435294, 0.435294, 1 )
 
 [sub_resource type="StyleBoxTexture" id=2]
 content_margin_bottom = 7.0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 351, 108 )
+margin_left = 12.0
+margin_right = 12.2039
+margin_top = 3.0
+
+[sub_resource type="StyleBoxTexture" id=3]
+content_margin_bottom = 7.0
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 351, 108 )
 margin_left = 12.0
 margin_right = 12.0
 margin_top = 3.0
 
-[sub_resource type="StyleBoxTexture" id=3]
-content_margin_bottom = 7.0
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 351, 108 )
-margin_left = 12.0
-margin_right = 12.0
-margin_top = 3.0
-
 [sub_resource type="DynamicFont" id=4]
-size = 14
+size = 18
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 

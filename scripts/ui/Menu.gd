@@ -19,6 +19,9 @@ func fade(from, to):
 
 func _on_New_Game_pressed():
 	fade(0,1)
+	yield(get_tree().create_timer(1),"timeout")
+	get_tree().change_scene("res://scenes/Level1.tscn")
+	RoomInstance.initialize_room()
 	pass # Replace with function body.
 
 

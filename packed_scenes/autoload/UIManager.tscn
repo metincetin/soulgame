@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://scripts/ui/OverheadUIElementsController.gd" type="Script" id=1]
 [ext_resource path="res://packed_scenes/ui/SkillSlot.tscn" type="PackedScene" id=2]
@@ -31,11 +31,17 @@
 [ext_resource path="res://textures/ui/ui_coin.png" type="Texture" id=29]
 [ext_resource path="res://scripts/ui/Gold.gd" type="Script" id=30]
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="DynamicFont" id=1]
+size = 26
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 28 )
+
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 117, 117 )
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
 uniform float fill_rate = 1.0;
@@ -45,17 +51,17 @@ void fragment(){
 	COLOR.a = step(1. - UV.y, fill_rate) * COLOR.a;
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/fill_rate = 1.049
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 28 )
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=7]
 content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 3.0
@@ -63,7 +69,7 @@ content_margin_bottom = 3.0
 texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 498, 497 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=8]
 content_margin_left = 12.0
 content_margin_right = 12.0
 content_margin_top = 12.0
@@ -71,13 +77,17 @@ content_margin_bottom = 12.0
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 498, 184 )
 
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=9]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 8.0
 content_margin_bottom = 8.0
 texture = ExtResource( 23 )
 region_rect = Rect2( 0, 0, 510, 618 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 75
+font_data = ExtResource( 28 )
 
 [node name="UIManager" type="Control"]
 anchor_right = 1.0
@@ -110,9 +120,10 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 205.0
-margin_top = -133.0
+margin_top = -172.0
 margin_right = -206.0
-margin_bottom = -71.0
+margin_bottom = -95.0
+custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
 autowrap = true
@@ -137,7 +148,7 @@ margin_left = -236.859
 margin_top = -155.434
 margin_right = -170.859
 margin_bottom = -89.4343
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 
 [node name="Skills" type="Control" parent="MainUI/Game/SkillsContainer"]
 anchor_top = 1.0
@@ -164,8 +175,8 @@ __meta__ = {
 }
 
 [node name="1" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
-margin_left = 435.0
-margin_right = 435.0
+margin_left = 883.0
+margin_right = 883.0
 margin_bottom = 41.0
 stretch_mode = 1
 
@@ -175,11 +186,11 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 
 [node name="2" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
-margin_left = 485.0
-margin_right = 485.0
+margin_left = 933.0
+margin_right = 933.0
 margin_bottom = 41.0
 stretch_mode = 1
 
@@ -189,11 +200,11 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 
 [node name="3" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
-margin_left = 535.0
-margin_right = 535.0
+margin_left = 983.0
+margin_right = 983.0
 margin_bottom = 41.0
 stretch_mode = 1
 
@@ -203,11 +214,11 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 
 [node name="4" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
-margin_left = 585.0
-margin_right = 585.0
+margin_left = 1033.0
+margin_right = 1033.0
 margin_bottom = 41.0
 stretch_mode = 1
 
@@ -217,7 +228,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 
 [node name="Interaction" type="Label" parent="MainUI/Game"]
 anchor_top = 0.5
@@ -283,7 +294,7 @@ texture = ExtResource( 25 )
 expand = true
 
 [node name="Front" type="TextureRect" parent="MainUI/Game/PlayerHealth"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 26 )
@@ -305,7 +316,7 @@ margin_top = 4.0
 margin_right = 41.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "142"
 align = 2
 valign = 1
@@ -369,7 +380,7 @@ margin_left = -133.0
 margin_top = -182.0
 margin_right = 134.0
 margin_bottom = 183.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -384,7 +395,7 @@ margin_right = 267.0
 margin_bottom = 266.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.7
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 7 )
 
 [node name="GridContainer" type="GridContainer" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills"]
 margin_left = 3.0
@@ -500,7 +511,7 @@ margin_top = 266.0
 margin_right = 267.0
 margin_bottom = 365.0
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 8 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Description"]
 margin_left = 12.0
@@ -558,14 +569,14 @@ __meta__ = {
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="MainUI/Windows/TabletRead"]
-margin_left = 384.0
-margin_top = 145.0
-margin_right = 639.0
-margin_bottom = 454.0
+margin_left = 832.0
+margin_top = 385.0
+margin_right = 1087.0
+margin_bottom = 694.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 255, 309 )
-custom_styles/panel = SubResource( 8 )
+custom_styles/panel = SubResource( 9 )
 
 [node name="Label" type="Label" parent="MainUI/Windows/TabletRead/PanelContainer"]
 margin_left = 8.0
@@ -646,5 +657,20 @@ size_flags_horizontal = 3
 text = "Cast Soul Capture"
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="OverlayColor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+
+[node name="EndText" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 10 )
+text = "You Died"
+align = 1
+valign = 1
 
 [connection signal="pressed" from="MainUI/Windows/Shop/PanelContainer/Control/Button" to="MainUI/Windows/Shop" method="hide"]

@@ -74,3 +74,23 @@ func show_info_text(text):
 
 func register_player_health(player):
 	$MainUI/Game/PlayerHealth.player = player
+
+func restart_game():
+	$Tween.interpolate_property($OverlayColor, "color", $OverlayColor.color, Color(0.0,0.0,0.0,1.0) ,1)
+	
+	$Tween.start()
+	yield(get_tree().create_timer(1), "timeout")
+	$EndText.show()
+	yield(get_tree().create_timer(3), "timeout")
+	get_tree().change_scene("res://scenes/Menu.tscn")
+	clear_skill_slots()
+	$EndText.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	GameInstance.gold = 0
+	$OverlayColor.color = Color(0,0,0,0)
+	
+	
+func clear_skill_slots():
+	get_skill_slot("Q").clear()
+	for skill_slot_parent in game_ui.get_node("SkillsContainer/Skills/Layout/").get_children():
+		skill_slot_parent.get_child(0).clear()

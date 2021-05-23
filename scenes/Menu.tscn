@@ -75,13 +75,13 @@ __meta__ = {
 [node name="VBoxContainer2" type="VBoxContainer" parent="Pages/Main/MarginContainer"]
 margin_left = 128.0
 margin_top = 42.0
-margin_right = 896.0
-margin_bottom = 472.0
+margin_right = 1792.0
+margin_bottom = 952.0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Pages/Main/MarginContainer/VBoxContainer2"]
-margin_right = 768.0
-margin_bottom = 319.0
+margin_right = 1664.0
+margin_bottom = 453.0
 size_flags_vertical = 3
 custom_constants/margin_right = 198
 custom_constants/margin_left = 198
@@ -89,26 +89,27 @@ custom_constants/margin_bottom = 0
 
 [node name="TextureRect" type="TextureRect" parent="Pages/Main/MarginContainer/VBoxContainer2/MarginContainer"]
 margin_left = 198.0
-margin_right = 570.0
-margin_bottom = 319.0
+margin_right = 1466.0
+margin_bottom = 453.0
 size_flags_vertical = 3
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
 [node name="MarginContainer2" type="MarginContainer" parent="Pages/Main/MarginContainer/VBoxContainer2"]
-margin_top = 323.0
-margin_right = 768.0
-margin_bottom = 430.0
-custom_constants/margin_right = 288
+margin_top = 457.0
+margin_right = 1664.0
+margin_bottom = 910.0
+size_flags_vertical = 3
+custom_constants/margin_right = 576
 custom_constants/margin_top = 0
-custom_constants/margin_left = 288
+custom_constants/margin_left = 576
 custom_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pages/Main/MarginContainer/VBoxContainer2/MarginContainer2"]
-margin_left = 288.0
-margin_right = 480.0
-margin_bottom = 107.0
+margin_left = 576.0
+margin_right = 1088.0
+margin_bottom = 453.0
 grow_horizontal = 2
 size_flags_horizontal = 7
 size_flags_vertical = 3
@@ -125,8 +126,9 @@ size_flags_horizontal = 3
 text = "Continue"
 
 [node name="New Game" type="Button" parent="Pages/Main/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer"]
-margin_right = 192.0
-margin_bottom = 29.0
+margin_top = 164.0
+margin_right = 512.0
+margin_bottom = 199.0
 size_flags_horizontal = 3
 text = "New Game"
 
@@ -138,15 +140,15 @@ margin_bottom = 68.0
 text = "Options"
 
 [node name="Credits" type="Button" parent="Pages/Main/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer"]
-margin_top = 39.0
-margin_right = 192.0
-margin_bottom = 68.0
+margin_top = 209.0
+margin_right = 512.0
+margin_bottom = 244.0
 text = "Credits"
 
 [node name="Quit" type="Button" parent="Pages/Main/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer"]
-margin_top = 78.0
-margin_right = 192.0
-margin_bottom = 107.0
+margin_top = 254.0
+margin_right = 512.0
+margin_bottom = 289.0
 text = "Quit"
 
 [node name="Credits" type="Control" parent="Pages"]

@@ -13,7 +13,7 @@ var _skill
 func get_skill():
 	return _skill
 func set_skill(value):
-	if _skill != null:
+	if _skill != null && is_instance_valid(_skill):
 		_skill.disconnect("casted",self, "_on_skill_casted")
 		_skill.disconnect("selection_changed", self, "_on_skill_selection_changed")
 	_skill = value
@@ -31,5 +31,7 @@ func _on_skill_selection_changed(value):
 func _ready():
 	$Overlay.material = $Overlay.material.duplicate()
 func _process(delta):
-	if _skill == null:	return
+	if !is_instance_valid(_skill):	return
 	$Overlay.material.set_shader_param("fill_rate",_skill.remaining_time_rate())
+func clear():
+	_skill = null
