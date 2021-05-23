@@ -167,5 +167,20 @@ func set_weapon(val):
 	
 	get_node("Hand/RightAnimation")["parameters/playback"].start(get_weapon().name + "_idle")
 
+func has_skill(skill):
+	return skill_container.has_skill(skill)
+func add_skill(skill):
+	if skill.skill_type == 1:
+		skill_container.add_new(skill)
+func can_add_skill(skill)->bool:
+	if skill.skill_type == 1:	return true
+	if get_empty_skill_slot() == null:	return false
+	return true
+
+func get_empty_skill_slot():
+	for i in 4:
+		var skill = skill_container.get_skill(str(i + 1))
+		if skill == null:	return skill
+	return null
 func reset():
 	if target_interactable !=null:	target_interactable.deselect()

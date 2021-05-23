@@ -61,6 +61,7 @@ content_margin_right = 8.0
 content_margin_top = 8.0
 content_margin_bottom = 8.0
 texture = ExtResource( 23 )
+region_rect = Rect2( 0, 0, 510, 618 )
 
 [node name="UIManager" type="Control"]
 anchor_right = 1.0
@@ -442,6 +443,23 @@ size_flags_vertical = 8
 text = "(Active) 10s"
 valign = 2
 
+[node name="Control" type="Control" parent="MainUI/Windows/Shop/PanelContainer"]
+margin_right = 267.0
+margin_bottom = 365.0
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="MainUI/Windows/Shop/PanelContainer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -24.0
+margin_top = -12.0
+margin_right = 12.0
+margin_bottom = 24.0
+text = " x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TabletRead" type="CenterContainer" parent="MainUI/Windows"]
 visible = false
 anchor_right = 1.0
@@ -475,6 +493,8 @@ autowrap = true
 [node name="Tutorial" type="Control" parent="MainUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 0.297241
+margin_right = 0.297241
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -536,3 +556,5 @@ margin_right = 240.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 text = "Cast Soul Capture"
+
+[connection signal="pressed" from="MainUI/Windows/Shop/PanelContainer/Control/Button" to="MainUI/Windows/Shop" method="hide"]

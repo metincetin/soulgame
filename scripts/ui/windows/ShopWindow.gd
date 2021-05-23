@@ -29,7 +29,10 @@ func _on_skill_mouse_entered(skill_slot):
 		duration_text.text = "(Active) " + str(skill_slot.skill.cast_rate)+"s"
 	else:
 		duration_text.text = "(Passive)"
-	cost_text.text = str(skill_slot.skill.cost)
+	if RoomInstance.player.has_skill(skill_slot.skill):
+		cost_text.text = "Owned"
+	else:
+		cost_text.text = str(skill_slot.skill.cost)
 	
 	description_text.bbcode_text = "[b]" + skill_slot.skill.skill_name+"[/b]\n" + skill_slot.skill.description + "\n" + skill_slot.skill.effects_description 
 	pass
@@ -39,12 +42,32 @@ func _on_skill_mouse_exited(skill_slot):
 	cost_text.text = ""
 	pass
 func _on_skill_pressed(skill_slot):
+	var skill = skill_slot.skill
+	if skill == null:	return
+	if GameInstance.gold < skill.cost:	return
+	if RoomInstance.player.can_add_skill(skill):
+		RoomInstance.player.add_skill(skill)
+		GameInstance.gold -= skill.cost
+		skill_slot.disabled = true
+		skill_slot.focus_mode = Button.FOCUS_NONE
 	pass
 
 func hide():
 	.hide()
-	set_process_input(false)
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func show():
 	.show()
-	set_process_input(true)
+	update_disabled()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func update_disabled():
+	for skill in skills_container.get_children():
+		print(RoomInstance.player.has_skill(skill.skill))
+		if skill.skill == null:	
+			skill.disabled = false
+			skill.focus_mode = Button.FOCUS_ALL
+		elif RoomInstance.player.has_skill(skill.skill):
+			skill.disabled = true
+			skill.focus_mode = Button.FOCUS_NONE
