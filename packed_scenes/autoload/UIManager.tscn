@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/ui/OverheadUIElementsController.gd" type="Script" id=1]
 [ext_resource path="res://packed_scenes/ui/SkillSlot.tscn" type="PackedScene" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://packed_scenes/ui/ShopSkillButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://textures/ui/shop_ui.png" type="Texture" id=7]
 [ext_resource path="res://textures/ui/shop_description_panel.png" type="Texture" id=8]
-[ext_resource path="res://fonts/eryx.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://themes/DefaultTheme.tres" type="Theme" id=9]
 [ext_resource path="res://textures/ui/shop_skills_panel.png" type="Texture" id=10]
 [ext_resource path="res://scripts/ui/windows/ShopWindow.gd" type="Script" id=11]
 [ext_resource path="res://skills/fireball.tres" type="Resource" id=12]
@@ -24,22 +24,13 @@
 [ext_resource path="res://scripts/ui/windows/TabletRead.gd" type="Script" id=22]
 [ext_resource path="res://textures/ui/tablet_ui.png" type="Texture" id=23]
 
-[sub_resource type="DynamicFont" id=1]
-size = 6
-extra_spacing_bottom = 2
-extra_spacing_space = 5
-font_data = ExtResource( 9 )
-
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
-
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 117, 117 )
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=3]
 content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 3.0
@@ -47,7 +38,7 @@ content_margin_bottom = 3.0
 texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 498, 497 )
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=4]
 content_margin_left = 12.0
 content_margin_right = 12.0
 content_margin_top = 12.0
@@ -55,7 +46,7 @@ content_margin_bottom = 12.0
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 498, 184 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=5]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 8.0
@@ -67,7 +58,7 @@ region_rect = Rect2( 0, 0, 510, 618 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-theme = SubResource( 2 )
+theme = ExtResource( 9 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -119,7 +110,7 @@ margin_left = 114.0
 margin_top = -133.0
 margin_right = 180.0
 margin_bottom = -67.0
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 
 [node name="Skills" type="Control" parent="MainUI/Game/SkillsContainer"]
 anchor_top = 1.0
@@ -157,7 +148,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 
 [node name="2" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
 margin_left = 485.0
@@ -171,7 +162,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 
 [node name="3" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
 margin_left = 535.0
@@ -185,7 +176,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 
 [node name="4" type="AspectRatioContainer" parent="MainUI/Game/SkillsContainer/Skills/Layout"]
 margin_left = 585.0
@@ -199,7 +190,7 @@ margin_top = 0.0
 margin_right = 20.5
 margin_bottom = 41.0
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 
 [node name="Interaction" type="Label" parent="MainUI/Game"]
 anchor_top = 0.5
@@ -284,7 +275,7 @@ margin_left = -133.0
 margin_top = -182.0
 margin_right = 134.0
 margin_bottom = 183.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -299,7 +290,7 @@ margin_right = 267.0
 margin_bottom = 266.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.7
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="GridContainer" type="GridContainer" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Skills"]
 margin_left = 3.0
@@ -415,7 +406,7 @@ margin_top = 266.0
 margin_right = 267.0
 margin_bottom = 365.0
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 4 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MainUI/Windows/Shop/PanelContainer/VBoxContainer/Description"]
 margin_left = 12.0
@@ -478,7 +469,7 @@ margin_bottom = 454.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 255, 309 )
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 5 )
 
 [node name="Label" type="Label" parent="MainUI/Windows/TabletRead/PanelContainer"]
 margin_left = 8.0
