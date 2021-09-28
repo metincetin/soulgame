@@ -8,128 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Resource",
-"class": "ActionCombiner",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/ActionCombiner.gd"
-}, {
-"base": "SkillEffect",
-"class": "CameraShakeEffect",
-"language": "GDScript",
-"path": "res://scripts/skill_effects/CameraShakeEffect.gd"
-}, {
-"base": "KinematicBody",
-"class": "Character",
-"language": "GDScript",
-"path": "res://scripts/Character.gd"
-}, {
-"base": "Resource",
-"class": "DelayedAction",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/DelayedAction.gd"
-}, {
-"base": "Character",
-"class": "Enemy",
-"language": "GDScript",
-"path": "res://scripts/Enemy.gd"
-}, {
-"base": "Resource",
-"class": "FunctionCallerSkillAction",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/FunctionCaller.gd"
-}, {
-"base": "Resource",
-"class": "GameSave",
-"language": "GDScript",
-"path": "res://scripts/GameSave.gd"
-}, {
-"base": "CollisionObject",
-"class": "Interactable",
-"language": "GDScript",
-"path": "res://scripts/Interactable.gd"
-}, {
-"base": "SkillEffect",
-"class": "MaterialChangeEffect",
-"language": "GDScript",
-"path": "res://scripts/skill_effects/MaterialChangeEffect.gd"
-}, {
-"base": "Resource",
-"class": "MultiProjectileCaster",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/MultiProjectileCaster.gd"
-}, {
-"base": "SkillAction",
-"class": "ObjectCreator",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/ObjectCreator.gd"
-}, {
-"base": "Resource",
-"class": "ProjectileCaster",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/ProjectileCaster.gd"
-}, {
-"base": "Node",
-"class": "Scenario",
-"language": "GDScript",
-"path": "res://scripts/scenario/Scenario.gd"
-}, {
-"base": "SkillEffect",
-"class": "ShaderPassEffect",
-"language": "GDScript",
-"path": "res://scripts/skill_effects/ShaderPassEffect.gd"
-}, {
-"base": "Resource",
-"class": "SkillAction",
-"language": "GDScript",
-"path": "res://scripts/SkillAction.gd"
-}, {
-"base": "Resource",
-"class": "SkillData",
-"language": "GDScript",
-"path": "res://scripts/SkillData.gd"
-}, {
-"base": "Resource",
-"class": "SkillEffect",
-"language": "GDScript",
-"path": "res://scripts/SkillEffect.gd"
-}, {
-"base": "Resource",
-"class": "SoulCaptureSkillAction",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/SoulCapture.gd"
-}, {
-"base": "Resource",
-"class": "StatAdder",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/StatAdder.gd"
-}, {
-"base": "Resource",
-"class": "StatSetter",
-"language": "GDScript",
-"path": "res://scripts/skill_actions/StatSetter.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"ActionCombiner": "",
-"CameraShakeEffect": "",
-"Character": "",
-"DelayedAction": "",
-"Enemy": "",
-"FunctionCallerSkillAction": "",
-"GameSave": "",
-"Interactable": "",
-"MaterialChangeEffect": "",
-"MultiProjectileCaster": "",
-"ObjectCreator": "",
-"ProjectileCaster": "",
-"Scenario": "",
-"ShaderPassEffect": "",
-"SkillAction": "",
-"SkillData": "",
-"SkillEffect": "",
-"SoulCaptureSkillAction": "",
-"StatAdder": "",
-"StatSetter": ""
+
 }
 
 [application]
@@ -140,9 +21,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
+GameInstance="*res://packed_scenes/autoload/GameInstance.tscn"
 UIManager="*res://packed_scenes/autoload/UIManager.tscn"
 RoomInstance="*res://scripts/auto_load/RoomInstance.gd"
-GameInstance="*res://packed_scenes/autoload/GameInstance.tscn"
 
 [display]
 
