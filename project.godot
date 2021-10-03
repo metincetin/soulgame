@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "KinematicBody",
+"class": "Character",
+"language": "GDScript",
+"path": "res://scripts/Character.gd"
+} ]
 _global_script_class_icons={
-
+"Character": ""
 }
 
 [application]
@@ -24,12 +29,6 @@ config/icon="res://icon.png"
 GameInstance="*res://packed_scenes/autoload/GameInstance.tscn"
 UIManager="*res://packed_scenes/autoload/UIManager.tscn"
 RoomInstance="*res://scripts/auto_load/RoomInstance.gd"
-
-[display]
-
-window/size/width=1920
-window/size/height=1080
-window/size/fullscreen=true
 
 [editor_plugins]
 
