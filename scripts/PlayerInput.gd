@@ -37,7 +37,7 @@ func _physics_process(delta):
 	dir = dir.normalized()
 	character.move(dir)
 	
-	if Input.is_key_pressed(KEY_SPACE):
+	if Input.is_action_just_pressed("movement_dash"):
 		character.dash()
 	
 func handle_rotation(mouse_delta):

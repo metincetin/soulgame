@@ -4,12 +4,12 @@
 [ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.3
+radius = 0.5
 height = 1.5
 
 [node name="DebugCharacter" type="KinematicBody"]
 script = ExtResource( 1 )
-dash_force = 4.0
+dash_force = 40.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.04832, 0 )
