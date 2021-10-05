@@ -30,6 +30,12 @@ GameInstance="*res://packed_scenes/autoload/GameInstance.tscn"
 UIManager="*res://packed_scenes/autoload/UIManager.tscn"
 RoomInstance="*res://scripts/auto_load/RoomInstance.gd"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/borderless=true
+
 [editor_plugins]
 
 enabled=PoolStringArray(  )
@@ -76,6 +82,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"
 quality/godrays/sample_number=50
 quality/godrays/use_pcf5=false

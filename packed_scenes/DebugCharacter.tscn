@@ -9,7 +9,7 @@ height = 1.5
 
 [node name="DebugCharacter" type="KinematicBody"]
 script = ExtResource( 1 )
-dash_force = 40.0
+dash_force = 30.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.04832, 0 )
@@ -17,6 +17,7 @@ shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89677, 0 )
+far = 20.0
 
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource( 2 )
