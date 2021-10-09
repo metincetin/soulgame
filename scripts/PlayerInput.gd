@@ -7,7 +7,7 @@ extends Node
 
 onready var character = get_parent()
 onready var camera = get_node("../Camera")
-
+export var reference_resolution = Vector2(1920, 1080)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
@@ -16,8 +16,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _input(event):
+	var scale_factor = get_tree().root.get_viewport().size / reference_resolution
 	if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		handle_rotation(event.relative)
+		handle_rotation(event.relative / scale_factor)
 
 	
 func _physics_process(delta):
