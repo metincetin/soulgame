@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Level3.fbx-4cc657918badea48bf9fadc2ddf17abc.scn"
+path="res://.import/level3.fbx-e5685d1f4e0e612c045a718b94c094b5.scn"
 
 [deps]
 
-source_file="res://Maps/Level3/Level3.fbx"
-dest_files=[ "res://.import/Level3.fbx-4cc657918badea48bf9fadc2ddf17abc.scn" ]
+source_file="res://Maps/Level3/level3.fbx"
+dest_files=[ "res://.import/level3.fbx-e5685d1f4e0e612c045a718b94c094b5.scn" ]
 
 [params]
 
