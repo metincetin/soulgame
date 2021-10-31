@@ -12,4 +12,4 @@ func _process(_delta):
 			set_interactable(raycast.get_collider())
 	elif get_interactable() != null:
 		set_interactable(null)
-	print(get_interactable())
+

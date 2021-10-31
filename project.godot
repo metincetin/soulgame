@@ -18,10 +18,22 @@ _global_script_classes=[ {
 "class": "Interactable",
 "language": "GDScript",
 "path": "res://scripts/systems/interaction/Interactable.gd"
+}, {
+"base": "Resource",
+"class": "ProjectileCaster",
+"language": "GDScript",
+"path": "res://scripts/systems/skill/actions/ProjectileCaster.gd"
+}, {
+"base": "Resource",
+"class": "SkillData",
+"language": "GDScript",
+"path": "res://scripts/systems/skill/SkillData.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
-"Interactable": ""
+"Interactable": "",
+"ProjectileCaster": "",
+"SkillData": ""
 }
 
 [application]

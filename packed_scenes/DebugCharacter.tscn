@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
 [ext_resource path="res://scripts/interaction/PlayerInteractor.gd" type="Script" id=3]
+[ext_resource path="res://scripts/systems/skill/SkillContainer.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -33,3 +34,6 @@ script = ExtResource( 2 )
 [node name="PlayerInteractor" type="Node" parent="Modules"]
 script = ExtResource( 3 )
 raycast_path = NodePath("../../Camera/InteractionRaycast")
+
+[node name="SkillContainer" type="Node" parent="Modules"]
+script = ExtResource( 4 )
