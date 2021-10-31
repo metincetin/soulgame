@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
+[ext_resource path="res://scripts/interaction/PlayerInteractor.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -19,5 +20,16 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89677, 0 )
 far = 20.0
 
-[node name="PlayerInput" type="Node" parent="."]
+[node name="InteractionRaycast" type="RayCast" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0190737, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -4 )
+
+[node name="Modules" type="Node" parent="."]
+
+[node name="PlayerInput" type="Node" parent="Modules"]
 script = ExtResource( 2 )
+
+[node name="PlayerInteractor" type="Node" parent="Modules"]
+script = ExtResource( 3 )
+raycast_path = NodePath("../../Camera/InteractionRaycast")

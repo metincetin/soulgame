@@ -5,8 +5,9 @@ extends Node
 # var a = 2
 # var b = "text"
 
-onready var character = get_parent()
-onready var camera = get_node("../Camera")
+onready var character = get_node("../..")
+onready var camera = character.get_node("Camera")
+
 export var reference_resolution = Vector2(1920, 1080)
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +18,8 @@ func _ready():
 
 func _input(event):
 	var scale_factor = get_tree().root.get_viewport().size / reference_resolution
+	if event.is_action_pressed("interact"):
+		get_node("../PlayerInteractor").interact()
 	if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		handle_rotation(event.relative / scale_factor)
 

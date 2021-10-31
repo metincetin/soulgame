@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+uniform float checker_size = 2;
+uniform vec4 checker_color:hint_color;
+
+void fragment(){
+	float fmodResult = mod(floor(checker_size * UV.x) + floor(checker_size * UV.y), 2.0);
+	float fin = max(sign(fmodResult), 0.0);
+	ALBEDO = vec3(fin, fin, fin);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/checker_size = 7.0
+shader_param/checker_color = Color( 1, 1, 1, 1 )
