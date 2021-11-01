@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "SkillData",
 "language": "GDScript",
 "path": "res://scripts/systems/skill/SkillData.gd"
+}, {
+"base": "Resource",
+"class": "StatSetterSkillAction",
+"language": "GDScript",
+"path": "res://scripts/systems/skill/actions/StatSetterSkillAction.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
 "Interactable": "",
 "ProjectileCaster": "",
-"SkillData": ""
+"SkillData": "",
+"StatSetterSkillAction": ""
 }
 
 [application]

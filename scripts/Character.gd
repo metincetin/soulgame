@@ -24,7 +24,7 @@ var total_speed:float setget , get_total_speed
 
 
 
-export var speed:float = 4
+export var movement_speed:float = 4
 export var dash_force:float = 0
 
 signal health_changed
@@ -64,7 +64,7 @@ func move(direction):
 	pass
 
 func _physics_process(delta):
-	linear_velocity = move_and_slide(movement_direction * (speed * speed_multiplier) + Vector3.UP * vertical_velocity + external_forces, Vector3.UP)
+	linear_velocity = move_and_slide(movement_direction * (movement_speed * speed_multiplier) + Vector3.UP * vertical_velocity + external_forces, Vector3.UP)
 	if !is_on_floor():
 		vertical_velocity += -9.81 * get_physics_process_delta_time()
 	else:

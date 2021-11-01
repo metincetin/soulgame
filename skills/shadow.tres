@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://scripts/systems/skill/SkillData.gd" type="Script" id=1]
+[ext_resource path="res://scripts/systems/skill/actions/StatSetterSkillAction.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+duration = 10.0
+type = 3
+stat_name = "movement_speed"
+value = 0.1
+
+[resource]
+script = ExtResource( 1 )
+skill_name = "Shadow"
+cooldown = 60.0
+actions = [ SubResource( 1 ) ]
+effects = [  ]

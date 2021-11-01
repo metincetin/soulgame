@@ -8,7 +8,7 @@ extends Node
 export(Array, Resource) var skills_to_add 
 
 export var skill_container_path:NodePath
-
+export var caster:NodePath
 
 
 
@@ -17,5 +17,6 @@ func _ready():
 	for i in skills_to_add:
 		skill_container.add_skill(i)
 	
-	print(skill_container.get_skill_by_name("Ölümcül skill").name)
+	yield(get_tree().create_timer(2), "timeout")
+	skill_container.get_skill_by_name("Shadow").cast(get_node(caster))
 	pass
