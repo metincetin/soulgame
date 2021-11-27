@@ -19,6 +19,7 @@ shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89677, 0 )
+cull_mask = 524287
 far = 20.0
 
 [node name="InteractionRaycast" type="RayCast" parent="Camera"]

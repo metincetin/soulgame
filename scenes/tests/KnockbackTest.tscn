@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://materials/tests/checker.tres" type="Material" id=1]
+[ext_resource path="res://Characters/Shop.png" type="Texture" id=2]
+[ext_resource path="res://packed_scenes/DebugCharacter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=4]
+
+[sub_resource type="ConcavePolygonShape" id=1]
+data = PoolVector3Array( 7.5, 0, 7.5, -7.5, 0, 7.5, 7.5, 0, -7.5, -7.5, 0, 7.5, -7.5, 0, -7.5, 7.5, 0, -7.5 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = ExtResource( 1 )
+size = Vector2( 15, 15 )
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.5
+height = 1.5
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Node
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+export var knockback_force:float = 10
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+	
+func _input(ev):
+	if Input.is_action_just_pressed(\"attack\"):
+		var enemy = get_node(\"../DebugEnemy\")
+		var player = get_node(\"../DebugCharacter\")
+		
+
+		var dir = player.transform.origin - enemy.transform.origin
+		dir = -dir.normalized()
+		enemy.knockback(dir * knockback_force + Vector3(0, knockback_force,0))
+		
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="KnocbackTest" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+transform = Transform( 1.01092, 0, 0, 0, 1.01092, 0, 0, 0, 1.01092, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="DebugCharacter" parent="." instance=ExtResource( 3 )]
+
+[node name="DebugEnemy" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.25438 )
+script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="DebugEnemy"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.04832, 0 )
+shape = SubResource( 3 )
+
+[node name="Sprite3D" type="Sprite3D" parent="DebugEnemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20988, 0 )
+pixel_size = 0.004
+billboard = 2
+transparent = false
+shaded = true
+alpha_cut = 1
+texture = ExtResource( 2 )
+
+[node name="KnockbackTester" type="Node" parent="."]
+script = SubResource( 4 )
+knockback_force = 50.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5266, 0.850113, 0, -0.850113, 0.5266, 0, 0, 0 )
+shadow_enabled = true
+
+[editable path="DebugCharacter"]

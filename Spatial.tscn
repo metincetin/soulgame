@@ -1,0 +1,136 @@
+[gd_scene load_steps=9 format=2]
+
+[sub_resource type="VisualScriptFunctionCall" id=1]
+_default_input_values = [ Vector3( 0, 0, 0 ), 15.0 ]
+base_type = "Spatial"
+argument_cache = {
+"args": [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "direction",
+"type": 7,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "speed",
+"type": 3,
+"usage": 7
+} ],
+"default_args": [  ],
+"flags": 1,
+"id": 0,
+"name": "something",
+"return": {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 7
+}
+}
+function = "something"
+
+[sub_resource type="VisualScriptFunction" id=2]
+resource_name = "_process"
+argument_count = 1
+argument_1/type = 3
+argument_1/name = "delta"
+
+[sub_resource type="VisualScriptBuiltinFunc" id=3]
+function = 56
+
+[sub_resource type="VisualScriptFunction" id=4]
+resource_name = "something"
+argument_count = 2
+argument_1/type = 7
+argument_1/name = "direction"
+argument_2/type = 3
+argument_2/name = "speed"
+
+[sub_resource type="VisualScriptReturn" id=5]
+_default_input_values = [ Vector3( 0, 0, 0 ) ]
+return_enabled = true
+return_type = 7
+
+[sub_resource type="VisualScriptOperator" id=6]
+_default_input_values = [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+operator = 8
+type = 7
+
+[sub_resource type="VisualScriptConstructor" id=7]
+_default_input_values = [ 0.0, 0.0, 0.0 ]
+type = 7
+constructor = {
+"args": [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "x",
+"type": 3,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "y",
+"type": 3,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "z",
+"type": 3,
+"usage": 7
+} ],
+"default_args": [  ],
+"flags": 1,
+"id": 0,
+"name": "Vector3",
+"return": {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 7,
+"usage": 7
+}
+}
+
+[sub_resource type="VisualScript" id=8]
+data = {
+"base_type": "Spatial",
+"functions": [ {
+"data_connections": [ 4, 0, 6, 0 ],
+"function_id": 5,
+"name": "_process",
+"nodes": [ 4, Vector2( 220, 640 ), SubResource( 1 ), 5, Vector2( 0, 640 ), SubResource( 2 ), 6, Vector2( 480, 640 ), SubResource( 3 ) ],
+"scroll": Vector2( -474.5, 297 ),
+"sequence_connections": [ 5, 0, 4, 4, 0, 6 ]
+}, {
+"data_connections": [ 2, 0, 1, 0, 0, 0, 2, 0, 0, 1, 3, 0, 3, 0, 2, 1, 0, 1, 3, 1, 0, 1, 3, 2 ],
+"function_id": 0,
+"name": "something",
+"nodes": [ 0, Vector2( 60, 240 ), SubResource( 4 ), 1, Vector2( 660, 240 ), SubResource( 5 ), 2, Vector2( 500, 360 ), SubResource( 6 ), 3, Vector2( 260, 360 ), SubResource( 7 ) ],
+"scroll": Vector2( -94.5, -123 ),
+"sequence_connections": [ 0, 0, 1 ]
+}, {
+"data_connections": [  ],
+"function_id": -1,
+"name": "f_312843592",
+"nodes": [  ],
+"scroll": Vector2( -7, 207.546 ),
+"sequence_connections": [  ]
+} ],
+"is_tool_script": false,
+"signals": [  ],
+"variables": [  ],
+"vs_unify": true
+}
+
+[node name="Spatial" type="Spatial"]
+script = SubResource( 8 )
