@@ -1,0 +1,135 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Enemies/Character1/Idle_Walk_Animation/0_1.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/Character1/Idle_Walk_Animation/2_1.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Character1/Idle_Walk_Animation/3_1.png" type="Texture" id=4]
+[ext_resource path="res://scripts/CharacterAnimation.gd" type="Script" id=5]
+[ext_resource path="res://Enemies/Character1/Idle_Walk_Animation/4_1.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/Character1/Idle_Walk_Animation/1_1.png" type="Texture" id=7]
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.5
+height = 1.5
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Node
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+var time = 0.0
+
+onready var character = get_node(\"../../\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func _process(delta):
+	time += delta
+	if time > 4:
+		character.move(Vector3(0,0,1))
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="Animation" id=5]
+resource_name = "attack"
+
+[sub_resource type="Animation" id=6]
+resource_name = "idle"
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "move"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+advance_condition = "is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+advance_condition = "is_not_moving"
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/idle/node = SubResource( 8 )
+states/idle/position = Vector2( 172, 54 )
+states/move/node = SubResource( 9 )
+states/move/position = Vector2( 339, 59 )
+transitions = [ "idle", "move", SubResource( 10 ), "move", "idle", SubResource( 11 ) ]
+start_node = "idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+
+[node name="DebugEnemy" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.25438 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.04832, 0 )
+shape = SubResource( 3 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48992, 0 )
+pixel_size = 0.002
+billboard = 2
+transparent = false
+shaded = true
+alpha_cut = 1
+texture = ExtResource( 7 )
+
+[node name="Modules" type="Node" parent="."]
+
+[node name="AI" type="Node" parent="Modules"]
+script = SubResource( 4 )
+
+[node name="Animation" type="Node" parent="Modules"]
+script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Modules/Animation"]
+anims/attack = SubResource( 5 )
+anims/idle = SubResource( 6 )
+anims/move = SubResource( 7 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Modules/Animation"]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 13 )
+parameters/conditions/is_moving = false
+parameters/conditions/is_not_moving = false
