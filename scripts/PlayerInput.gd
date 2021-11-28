@@ -31,8 +31,10 @@ func _input(event):
 		get_node("../PlayerInteractor").interact()
 	if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		handle_rotation(event.relative / scale_factor)
-
-	
+	if event.is_action_pressed("attack"):
+		character.attack()
+	if Input.is_action_just_pressed("movement_dash"):
+		character.dash()
 func _physics_process(delta):
 	var dir = Vector3(movement_input.x,0,movement_input.y)
 	
@@ -41,9 +43,6 @@ func _physics_process(delta):
 	dir.y = 0
 
 	character.move(dir)
-	
-	if Input.is_action_just_pressed("movement_dash"):
-		character.dash()
 	
 func handle_rotation(mouse_delta):
 	camera.rotation_degrees.x -= mouse_delta.y * get_process_delta_time() * 10

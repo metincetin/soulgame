@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://materials/tests/checker.tres" type="Material" id=1]
 [ext_resource path="res://packed_scenes/DebugEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://packed_scenes/DebugCharacter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/0_1.png" type="Texture" id=4]
+[ext_resource path="res://Animations/FPS_Animations/Magic_Animation/0_1.png" type="Texture" id=5]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( 7.5, 0, 7.5, -7.5, 0, 7.5, 7.5, 0, -7.5, -7.5, 0, 7.5, -7.5, 0, -7.5, 7.5, 0, -7.5 )
@@ -55,6 +57,27 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="DebugCharacter" parent="." instance=ExtResource( 3 )]
+
+[node name="FPS" type="Control" parent="DebugCharacter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureRect" parent="DebugCharacter/FPS"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 7
+
+[node name="Right" type="TextureRect" parent="DebugCharacter/FPS"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 7
 
 [node name="DebugEnemy" parent="." instance=ExtResource( 2 )]
 

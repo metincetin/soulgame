@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/WeaponData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+weapon_name = "Axe"
+base_damage = 20.0
+knockback_multiplier = 1.7
+animation_prefix = "axe"
+attack_animation_count = 1

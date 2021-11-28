@@ -24,6 +24,8 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="DebugCharacter" parent="." instance=ExtResource( 2 )]
+dash_force = 20.0
+knockback_power = 150.0
 
 [node name="DebugEnemy" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39954, -2.38419e-07, -6.35833 )

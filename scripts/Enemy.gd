@@ -12,6 +12,10 @@ func _ready():
 
 func knockback(power:Vector3):
 	external_forces += power / knocback_resistance
+	movement_enabled = false
+	yield(get_tree().create_timer(0.4), "timeout")
+	movement_enabled = true
+
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

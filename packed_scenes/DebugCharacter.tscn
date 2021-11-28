@@ -1,17 +1,98 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://scripts/Character.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
 [ext_resource path="res://scripts/interaction/PlayerInteractor.gd" type="Script" id=3]
 [ext_resource path="res://scripts/systems/skill/SkillContainer.gd" type="Script" id=4]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/2_1.png" type="Texture" id=5]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/3_1.png" type="Texture" id=6]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/6_1.png" type="Texture" id=7]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/0_1.png" type="Texture" id=8]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/0_1.png" type="Texture" id=9]
+[ext_resource path="res://Animations/FPS_Animations/Magic_Animation/0_1.png" type="Texture" id=10]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/5_1.png" type="Texture" id=11]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/1_1.png" type="Texture" id=12]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/1_1.png" type="Texture" id=13]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/6_1.png" type="Texture" id=14]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/7_1.png" type="Texture" id=15]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/2_1.png" type="Texture" id=16]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/4_1.png" type="Texture" id=17]
+[ext_resource path="res://Animations/FPS_Animations/Sword_Animation/8_1.png" type="Texture" id=18]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/3_1.png" type="Texture" id=19]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/4_1.png" type="Texture" id=20]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/5_1.png" type="Texture" id=21]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/8_1.png" type="Texture" id=22]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/7_1.png" type="Texture" id=23]
+[ext_resource path="res://Animations/FPS_Animations/Axe_Animation/9_1.png" type="Texture" id=24]
+[ext_resource path="res://scripts/PlayerAnimation.gd" type="Script" id=25]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.5
 
+[sub_resource type="Animation" id=2]
+resource_name = "axe_attack_0"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../FPS/Right:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 14 ), ExtResource( 23 ), ExtResource( 22 ), ExtResource( 24 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "try_deal_primary_damage"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "sword_attack_0"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../FPS/Right:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 15 ), ExtResource( 18 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "try_deal_primary_damage"
+} ]
+}
+
 [node name="DebugCharacter" type="KinematicBody"]
 script = ExtResource( 1 )
-dash_force = 30.0
+raycast_path = NodePath("Camera/InteractionRaycast")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.04832, 0 )
@@ -38,3 +119,36 @@ raycast_path = NodePath("../../Camera/InteractionRaycast")
 
 [node name="SkillContainer" type="Node" parent="Modules"]
 script = ExtResource( 4 )
+
+[node name="PlayerAnimation" type="Node" parent="Modules"]
+script = ExtResource( 25 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Modules/PlayerAnimation"]
+anims/axe_attack_0 = SubResource( 2 )
+anims/sword_attack_0 = SubResource( 3 )
+
+[node name="FPS" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="TextureRect" parent="FPS"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureRect" parent="FPS"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}

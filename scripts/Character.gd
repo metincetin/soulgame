@@ -5,6 +5,9 @@ class_name Character
 # var a = 2
 # var b = "text"
 
+
+var weapon_data:WeaponData
+
 var freeze = false
 export var max_health:float = 100
 var health:float setget set_health, get_health
@@ -37,6 +40,8 @@ var external_forces:Vector3
 
 var vertical_velocity = 0.0
 
+var movement_enabled = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_health(max_health)
@@ -60,6 +65,7 @@ func dash():
 	pass
 
 func move(direction):
+	if !movement_enabled:	return
 	movement_direction = direction
 	pass
 
@@ -92,6 +98,9 @@ func set_health(val):
 		die()
 	_health = clamp(_health,0, max_health)
 	emit_signal("health_changed",_health)
+	
+func get_weapon_data():	return weapon_data
+func set_weapon_data(value):	weapon_data = value
 
 func get_total_damage():	return base_damage * damage_multiplier
 func get_total_speed():	return base_speed * speed_multiplier
