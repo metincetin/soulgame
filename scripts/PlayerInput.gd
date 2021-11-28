@@ -9,6 +9,9 @@ onready var character = get_node("../..")
 onready var camera = character.get_node("Camera")
 
 export var reference_resolution = Vector2(1920, 1080)
+
+var movement_input:Vector2
+var joystick_look:Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
@@ -16,6 +19,12 @@ func _ready():
 
 	pass # Replace with function body.
 
+func _process(delta):
+	movement_input = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
+	movement_input = movement_input.clamped(1)
+	
+	joystick_look = Vector2(Input.get_axis("look_left", "look_right"), Input.get_axis("look_up", "look_down"))
+	handle_rotation(joystick_look * 10)
 func _input(event):
 	var scale_factor = get_tree().root.get_viewport().size / reference_resolution
 	if event.is_action_pressed("interact"):
@@ -25,20 +34,12 @@ func _input(event):
 
 	
 func _physics_process(delta):
-	var dir = Vector3()
-	if Input.is_key_pressed(KEY_A):
-		dir.x -= 1
-	if Input.is_key_pressed(KEY_D):
-		dir.x += 1
-	if Input.is_key_pressed(KEY_W):
-		dir.z -= 1
-	if Input.is_key_pressed(KEY_S):
-		dir.z += 1
+	var dir = Vector3(movement_input.x,0,movement_input.y)
 	
 	
-	dir = camera.global_transform.basis.xform(dir.normalized())
+	dir = character.global_transform.basis.xform(dir)
 	dir.y = 0
-	dir = dir.normalized()
+
 	character.move(dir)
 	
 	if Input.is_action_just_pressed("movement_dash"):
