@@ -9,13 +9,20 @@ func _ready():
 	._ready()
 	set_weapon_data(load("res://data/weapons/Sword.tres"))
 
+func _process(delta):
+	if Input.is_action_just_pressed("magic"):
+		get_module("PlayerAnimation").play_cast()
+
 func set_weapon_data(value):
 	.set_weapon_data(value)
+	get_module("PlayerAnimation").update_weapon_data()
 func attack():
 	if weapon_data == null:
 		return
-	get_node("Modules/PlayerAnimation").play_attack(weapon_data)
+	get_module("PlayerAnimation").play_attack()
 	pass
+
+	
 
 func try_deal_primary_damage():
 	if weapon_data == null:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerInput.gd" type="Script" id=2]
@@ -25,10 +25,74 @@
 [ext_resource path="res://Animations/FPS_Animations/Axe_Animation/7_1.png" type="Texture" id=23]
 [ext_resource path="res://Animations/FPS_Animations/Axe_Animation/9_1.png" type="Texture" id=24]
 [ext_resource path="res://scripts/PlayerAnimation.gd" type="Script" id=25]
+[ext_resource path="res://Animations/FPS_Animations/Magic_Animation/4_1.png" type="Texture" id=26]
+[ext_resource path="res://Animations/FPS_Animations/Magic_Animation/3_1.png" type="Texture" id=27]
+[ext_resource path="res://Animations/FPS_Animations/Magic_Animation/1_1.png" type="Texture" id=28]
+[ext_resource path="res://Animations/FPS_Animations/Magic_Animation/2_1.png" type="Texture" id=29]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.5
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "axe_attack_0"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "axe_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachine" id=29]
+states/attack_0/node = SubResource( 39 )
+states/attack_0/position = Vector2( 369, 52 )
+states/axe_idle/node = SubResource( 40 )
+states/axe_idle/position = Vector2( 181, 52 )
+transitions = [ "attack_0", "axe_idle", SubResource( 41 ), "axe_idle", "attack_0", SubResource( 44 ) ]
+start_node = "axe_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id=28]
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "sword_attack_0"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "sword_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachine" id=33]
+states/attack_0/node = SubResource( 30 )
+states/attack_0/position = Vector2( 360, 63 )
+states/sword_idle/node = SubResource( 31 )
+states/sword_idle/position = Vector2( 149, 70 )
+transitions = [ "attack_0", "sword_idle", SubResource( 32 ), "sword_idle", "attack_0", SubResource( 43 ) ]
+start_node = "sword_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id=34]
+states/axe/node = SubResource( 29 )
+states/axe/position = Vector2( 224, 119 )
+states/selector/node = SubResource( 28 )
+states/selector/position = Vector2( 34, 78 )
+states/sword/node = SubResource( 33 )
+states/sword/position = Vector2( 224, 43 )
+start_node = "selector"
+graph_offset = Vector2( -208, -28 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=42]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 
 [sub_resource type="Animation" id=2]
 resource_name = "axe_attack_0"
@@ -58,6 +122,54 @@ tracks/1/keys = {
 "args": [  ],
 "method": "try_deal_primary_damage"
 } ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "axe_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../FPS/Right:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "hand_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../FPS/Left:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "hand_magic"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../FPS/Left:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 27 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 28 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -90,8 +202,48 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "sword_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../FPS/Right:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "hand_magic"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "hand_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=49]
+states/cast/node = SubResource( 46 )
+states/cast/position = Vector2( 371, 65 )
+states/hand_idle/node = SubResource( 45 )
+states/hand_idle/position = Vector2( 153, 65 )
+transitions = [ "hand_idle", "cast", SubResource( 47 ), "cast", "hand_idle", SubResource( 48 ) ]
+start_node = "hand_idle"
+graph_offset = Vector2( -23, -2 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=50]
+
 [node name="DebugCharacter" type="KinematicBody"]
 script = ExtResource( 1 )
+dash_force = 20.0
 raycast_path = NodePath("Camera/InteractionRaycast")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -123,9 +275,34 @@ script = ExtResource( 4 )
 [node name="PlayerAnimation" type="Node" parent="Modules"]
 script = ExtResource( 25 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Modules/PlayerAnimation"]
+[node name="Right" type="AnimationTree" parent="Modules/PlayerAnimation"]
+tree_root = SubResource( 34 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/playback = SubResource( 35 )
+parameters/axe/playback = SubResource( 37 )
+parameters/selector/playback = SubResource( 42 )
+parameters/sword/playback = SubResource( 38 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Modules/PlayerAnimation/Right"]
+root_node = NodePath("../..")
 anims/axe_attack_0 = SubResource( 2 )
+anims/axe_idle = SubResource( 4 )
+anims/hand_idle = SubResource( 26 )
+anims/hand_magic = SubResource( 27 )
 anims/sword_attack_0 = SubResource( 3 )
+anims/sword_idle = SubResource( 5 )
+
+[node name="Left" type="AnimationTree" parent="Modules/PlayerAnimation"]
+tree_root = SubResource( 49 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/playback = SubResource( 50 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Modules/PlayerAnimation/Left"]
+root_node = NodePath("../..")
+anims/hand_idle = SubResource( 26 )
+anims/hand_magic = SubResource( 27 )
 
 [node name="FPS" type="Control" parent="."]
 anchor_right = 1.0
@@ -137,7 +314,7 @@ __meta__ = {
 [node name="Right" type="TextureRect" parent="FPS"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

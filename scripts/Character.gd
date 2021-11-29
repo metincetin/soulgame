@@ -106,6 +106,8 @@ func get_total_damage():	return base_damage * damage_multiplier
 func get_total_speed():	return base_speed * speed_multiplier
 func get_total_defence():	return base_defence * defence_multiplier
 
+func get_module(module_name):	return get_node("Modules/"+module_name)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
